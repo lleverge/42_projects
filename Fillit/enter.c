@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 16:11:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/04 17:10:25 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/04 18:59:53 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int			check_file(char *file_name)
 	int		fd;
 	char	buf[5];
 	int		ret;
-	int		i;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
