@@ -6,11 +6,11 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 16:11:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/04 16:33:01 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/04 16:53:50 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unistd.h"
+#include <unistd.h>
 #include <fcntl.h>
 
 int		check_file(char *file_name)
@@ -18,6 +18,7 @@ int		check_file(char *file_name)
 	int		fd;
 	char	buf[5];
 	int		ret;
+	int		i;
 
 	fd = open(file_name,  O_RDONLY);
 	if (fd == -1)
@@ -40,6 +41,7 @@ int		main(int argc, char  **argv)
 		write(1, "\n", 1);
 		return (0);
 	}
-	check_file(argv[1]);
+	if (check_file(argv[1]) == 1)
+		return (1);
 	return (0);
 }
