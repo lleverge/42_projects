@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 16:11:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/04 17:05:57 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/04 17:10:25 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ int			check_file(char *file_name)
 	while ((ret = read(fd, buf, 1)) > 0)
 	{
 		if (*buf != '.' && *buf != '#')
-		{
-			ft_putstr("error\n");
 			return (1);
-		}
 	}
 	close(fd);
 	if (close(fd) == -1)
@@ -59,10 +56,13 @@ int			main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		write(1, "\n", 1);
+		ft_putstr("error\n");
 		return (0);
 	}
 	if (check_file(argv[1]) == 1)
+	{
+		ft_putstr("error\n");
 		return (1);
+	}
 	return (0);
 }
