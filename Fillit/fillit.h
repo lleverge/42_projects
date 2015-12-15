@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 10:35:48 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/15 11:08:57 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/15 13:18:10 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@ typedef struct			s_tetri
 
 char					*ft_cattetri(char **tab, int start_index, int end_index);
 char					**pieces_tab(char *file_name);
-
+t_tetri					*tetri_lstnew(char *piece, char let);
+int						count_offsety(char *piece);
+int						count_offsetx(char *piece);
+int						count_width(char *piece);
+int						count_height(char *piece);
 #endif

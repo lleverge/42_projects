@@ -6,27 +6,14 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/15 11:57:57 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/15 14:13:45 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "srcs/libft.h"
 #include "fillit.h"
 
-char	*ft_cattetri(char **tab, int start_index, int end_index)
-{
-	char *piece;
-
-	piece = (char *)malloc(sizeof(char) * 17);
-	while (start_index <= end_index)
-	{
-		ft_strcat(piece, tab[start_index]);
-		start_index++;
-	}
-	return (piece);
-}
-
-int		count_height(char *piece)
+int			count_height(char *piece)
 {
 	int	count;
 	int	i;
@@ -39,7 +26,7 @@ int		count_height(char *piece)
 	{
 		if (i == 4 || i == 8 || i == 12)
 			flag = 0;
-		if(flag == 0 && piece[i] == '#')
+		if (flag == 0 && piece[i] == '#')
 		{
 			count++;
 			flag = 1;
@@ -49,7 +36,7 @@ int		count_height(char *piece)
 	return (count);
 }
 
-int		count_width(char *piece)
+int			count_width(char *piece)
 {
 	int	count;
 	int	count_max;
@@ -69,28 +56,80 @@ int		count_width(char *piece)
 			count++;
 			if (count > count_max)
 				count_max = count;
+			i++;
 		}
 		i++;
 	}
 	return (count_max);
 }
 
-t_tetri		*ft_lstnew(char *piece, char let)
+int			count_offsetx(char *piece)
+{
+	int	i;
+	int	count;
+	int	offsetx;
+
+	i = 0;
+	count = 0;
+	offsetx = 42;
+	while (piece[i++])
+	{
+		if (i == 4 || i == 8 || i == 12)
+			count = 0;
+		if (count < offsetx && piece[i] == '#')
+			offsetx = count;
+		count++;
+	}
+	return (offsetx);
+}
+
+int			count_offsety(char *piece)
+{
+	int	i;
+	int flag;
+	int	offsety;
+
+	i = 0;
+	flag = 0;
+	while (piece[i++])
+	{
+		if (i < 4 && piece[i] == '#')
+		{
+			offsety = 0;
+			flag = 1;
+		}
+		if (i >= 4 && i < 8 && flag == 0 && piece[i] == '#')
+		{
+			offsety = 1;
+			flag = 1;
+		}
+		if (i >= 8 && i < 12 && flag == 0 && piece[i] == '#')
+		{
+			offsety = 2;
+			flag = 1;
+		}
+		if (i >= 12 && flag == 0 && piece[i] == '#')
+			offsety = 3;
+	}
+	return (offsety);
+}
+
+t_tetri		*tetri_lstnew(char *piece, char let)
 {
 	t_tetri	*list;
 
-	tetri = (t_tetri *)malloc(sizeof(t_tetri));
-	if (!tetri)
+	list = (t_tetri *)malloc(sizeof(t_tetri));
+	if (!list)
 		return (NULL);
 	else
 	{
-		tetri->tetri = piece;
-		tetri->letter = let;
-		tetri->width = count_width(piece);
-		tetri->height = count_height(piece);
-		tetri->offsetx = count_offsetx(piece);
-		tetri->offsety = count_offsety(piece);
-		tetri->next = NULL;
+		list->tetri = piece;
+		list->letter = let;
+		list->width = count_width(piece);
+		list->height = count_height(piece);
+		list->offsetx = count_offsetx(piece);
+		list->offsety = count_offsety(piece);
+		list->next = NULL;
 	}
 	return (list);
 }
