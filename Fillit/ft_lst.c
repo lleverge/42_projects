@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/15 14:13:45 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/15 16:10:31 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,10 @@ int			count_width(char *piece)
 	{
 		if (i == 4 || i == 8 || i == 12)
 			count = 0;
-		while (piece[i] == '#')
-		{
+		if (piece[i] == '#')
 			count++;
-			if (count > count_max)
-				count_max = count;
-			i++;
-		}
+		if (count > count_max)
+			count_max = count;
 		i++;
 	}
 	return (count_max);
@@ -72,13 +69,14 @@ int			count_offsetx(char *piece)
 	i = 0;
 	count = 0;
 	offsetx = 42;
-	while (piece[i++])
+	while (piece[i])
 	{
 		if (i == 4 || i == 8 || i == 12)
 			count = 0;
 		if (count < offsetx && piece[i] == '#')
 			offsetx = count;
 		count++;
+		i++;
 	}
 	return (offsetx);
 }
@@ -91,7 +89,7 @@ int			count_offsety(char *piece)
 
 	i = 0;
 	flag = 0;
-	while (piece[i++])
+	while (piece[i])
 	{
 		if (i < 4 && piece[i] == '#')
 		{
@@ -110,6 +108,7 @@ int			count_offsety(char *piece)
 		}
 		if (i >= 12 && flag == 0 && piece[i] == '#')
 			offsety = 3;
+		i++;
 	}
 	return (offsety);
 }
