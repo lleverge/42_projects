@@ -6,23 +6,21 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:06:47 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/15 15:38:48 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/16 15:01:54 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "srcs/libft.h"
-#include <fcntl.h>
 #include "fillit.h"
 
-char		*ft_cattetri(char **tab, int start_index, int end_index)
+char		*ft_cattetri(char **tab, int start, int end)
 {
 	char *piece;
 
 	piece = (char *)malloc(sizeof(char) * 17);
-	while (start_index <= end_index && tab[start_index])
+	while (start <= end && tab[start])
 	{
-		ft_strcat(piece, tab[start_index]);
-		start_index++;
+		ft_strcat(piece, tab[start]);
+		start++;
 	}
 	return (piece);
 }
@@ -45,10 +43,11 @@ char		**pieces_tab(char *file_name)
 	}
 	ret = read(fd, buf, 545);
 	tab = ft_strsplit(buf, '\n');
+	close(fd);
 	return (tab);
 }
 
-int		main(int argc, char ** argv)
+int			main(int argc, char **argv)
 {
 	char	**tab;
 	int		i;
@@ -58,7 +57,7 @@ int		main(int argc, char ** argv)
 	t_tetri *listtmp;
 
 	i = 0;
-	c = 97;
+	c = 65;
 	piece_nbr = 7;
 	tab = pieces_tab(argv[1]);
 	list = tetri_lstnew(ft_cattetri(tab, i, i + 3), c);
@@ -66,6 +65,7 @@ int		main(int argc, char ** argv)
 	while (piece_nbr--)
 	{
 		i += 4;
+		c += 1;
 		list->next = tetri_lstnew(ft_cattetri(tab, i, i + 3), c);
 		list = list->next;
 	}

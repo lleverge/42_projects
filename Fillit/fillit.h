@@ -6,12 +6,14 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 10:35:48 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/15 13:18:10 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/16 15:00:13 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
+# include "srcs/libft.h"
+# include <fcntl.h>
 
 typedef struct			s_tetri
 {
@@ -24,7 +26,7 @@ typedef struct			s_tetri
 	struct s_tetri		*next;
 }						t_tetri;
 
-char					*ft_cattetri(char **tab, int start_index, int end_index);
+char					*ft_cattetri(char **tab, int start, int end);
 char					**pieces_tab(char *file_name);
 t_tetri					*tetri_lstnew(char *piece, char let);
 int						count_offsety(char *piece);
