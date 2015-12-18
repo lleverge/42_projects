@@ -6,53 +6,55 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/17 15:50:12 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/18 17:37:55 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "srcs/libft.h"
 #include "fillit.h"
 
-int			count_height(char *piece)
+int			count_height(char **piece)
 {
 	int	count;
 	int	i;
-	int flag;
+	int	j;
 
-	count = 0;
-	i = 0;
-	flag = 0;
+	count = 1;
+	i = 1;
 	while (piece[i])
 	{
-		if (i == 4 || i == 8 || i == 12)
-			flag = 0;
-		if (flag == 0 && piece[i] == '#')
+		j = 0;
+		while (piece[i][j])
 		{
-			count++;
-			flag = 1;
+			if (piece[i][j] == '#' && piece[i - 1][j] == '#')
+				count++;
+			j++;
 		}
 		i++;
 	}
 	return (count);
 }
 
-int			count_width(char *piece)
+int			count_width(char **piece)
 {
+	int	i;
+	int	j;
 	int	count;
 	int	count_max;
-	int	i;
-	int	flag;
 
-	count = 0;
 	i = 0;
-	flag = 0;
-	count_max = 0;
+	count = 0;
+	count_max = 42;
 	while (piece[i])
 	{
-		if (i == 4 || i == 8 || i == 12)
-			count = 0;
-		if (piece[i] == '#')
-			count++;
+		j = 0;
+		count = 0;
+		while (piece[i][j])
+		{
+			if (piece[i][j] == '#')
+				count++;
+			j++;
+		}
 		if (count > count_max)
 			count_max = count;
 		i++;
@@ -60,46 +62,46 @@ int			count_width(char *piece)
 	return (count_max);
 }
 
-int			count_offsetx(char *piece)
+int			count_offsetx(char **piece)
 {
 	int	i;
-	int	count;
+	int	j;
 
 	i = 0;
-	count = 0;
-	while (piece[i] != '#')
-	{
-		count++;
-		i++;
-	}
-	return (count);
-}
-
-int			count_offsety(char *piece)
-{
-	int	i;
-	int flag;
-
-	i = 0;
-	flag = 0;
 	while (piece[i])
 	{
-		if (piece[i] == '#')
-			flag = 1;
-		if (i < 4 && flag == 1)
-			return (0);
-		if (i >= 4 && i < 8 && flag == 1)
-			return (1);
-		if (i >= 8 && i < 12 && flag == 1)
-			return (2);
-		if (i >= 12 && flag == 1)
-			return (3);
+		j = 0;
+		while (piece[i][j])
+		{
+			if (piece[i][j] == '#')
+				return (j);
+			j++;
+		}
 		i++;
 	}
-	return (-1);
+	return (-42);
 }
 
-t_tetri		*tetri_lstnew(char *piece, char let)
+int			count_offsety(char **piece)
+{
+	int	i;
+	int	j;
+
+	while (piece[i])
+	{
+		j = 0;
+		while (piece[i][j])
+		{
+			if (piece[i][j] == '#')
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	return (-42);
+}
+
+t_tetri		*tetri_lstnew(char **piece, char let)
 {
 	t_tetri	*list;
 
