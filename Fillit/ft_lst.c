@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/15 16:10:31 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/17 15:50:12 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,53 +64,39 @@ int			count_offsetx(char *piece)
 {
 	int	i;
 	int	count;
-	int	offsetx;
 
 	i = 0;
 	count = 0;
-	offsetx = 42;
-	while (piece[i])
+	while (piece[i] != '#')
 	{
-		if (i == 4 || i == 8 || i == 12)
-			count = 0;
-		if (count < offsetx && piece[i] == '#')
-			offsetx = count;
 		count++;
 		i++;
 	}
-	return (offsetx);
+	return (count);
 }
 
 int			count_offsety(char *piece)
 {
 	int	i;
 	int flag;
-	int	offsety;
 
 	i = 0;
 	flag = 0;
 	while (piece[i])
 	{
-		if (i < 4 && piece[i] == '#')
-		{
-			offsety = 0;
+		if (piece[i] == '#')
 			flag = 1;
-		}
-		if (i >= 4 && i < 8 && flag == 0 && piece[i] == '#')
-		{
-			offsety = 1;
-			flag = 1;
-		}
-		if (i >= 8 && i < 12 && flag == 0 && piece[i] == '#')
-		{
-			offsety = 2;
-			flag = 1;
-		}
-		if (i >= 12 && flag == 0 && piece[i] == '#')
-			offsety = 3;
+		if (i < 4 && flag == 1)
+			return (0);
+		if (i >= 4 && i < 8 && flag == 1)
+			return (1);
+		if (i >= 8 && i < 12 && flag == 1)
+			return (2);
+		if (i >= 12 && flag == 1)
+			return (3);
 		i++;
 	}
-	return (offsety);
+	return (-1);
 }
 
 t_tetri		*tetri_lstnew(char *piece, char let)

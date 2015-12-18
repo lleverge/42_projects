@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:06:47 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/16 15:01:54 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/18 12:13:15 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char		*ft_cattetri(char **tab, int start, int end)
 	return (piece);
 }
 
-char		**pieces_tab(char *file_name)
+char		**pieces_intab(char *file_name)
 {
-	char	buf[546];
+	char	buf[BUF_SIZE];
 	int		fd;
 	int		ret;
 	char	**tab;
@@ -41,25 +41,21 @@ char		**pieces_tab(char *file_name)
 		ft_putstr("open error \n");
 		return (NULL);
 	}
-	ret = read(fd, buf, 545);
+	ret = read(fd, buf, BUF_SIZE);
 	tab = ft_strsplit(buf, '\n');
 	close(fd);
 	return (tab);
 }
 
-int			main(int argc, char **argv)
+t_tetri		*piece_inlist(int piece_nbr, char **tab)
 {
-	char	**tab;
 	int		i;
-	int		piece_nbr;
 	char	c;
-	t_tetri *list;
-	t_tetri *listtmp;
+	t_tetri	*list;
+	t_tetri	*listtmp;
 
 	i = 0;
 	c = 65;
-	piece_nbr = 7;
-	tab = pieces_tab(argv[1]);
 	list = tetri_lstnew(ft_cattetri(tab, i, i + 3), c);
 	listtmp = list;
 	while (piece_nbr--)
@@ -69,27 +65,26 @@ int			main(int argc, char **argv)
 		list->next = tetri_lstnew(ft_cattetri(tab, i, i + 3), c);
 		list = list->next;
 	}
-	while (listtmp->next)
-	{
-		ft_putstr("tetri: ");
-		ft_putstr(listtmp->tetri);
-		ft_putchar('\n');
-		ft_putstr("hauteur: ");
-		ft_putnbr(listtmp->height);
-		ft_putchar('\n');
-		ft_putstr("largeur: ");
-		ft_putnbr(listtmp->width);
-		ft_putchar('\n');
-		ft_putstr("offsetx: ");
-		ft_putnbr(listtmp->offsetx);
-		ft_putchar('\n');
-		ft_putstr("offsety: ");
-		ft_putnbr(listtmp->offsety);
-		ft_putchar('\n');
-		ft_putstr("letter: ");
-		ft_putchar(listtmp->letter);
-		ft_putchar('\n');
-		listtmp = listtmp->next;
+	return (listtmp);
+}
+
+int			main(int ac, char **av)
+{
+	int		piece_nbr;
+	char	**tab;
+	t_tetri *list;
+
+	if (ac != 2)
+		ft_error();
+    else if (ft_check_file(ft_read_file(av[1])) == 1)
+    {
+		piece_nbr = ft_count_tetri(ft_read_file(av[1]));
+        ft_putstr("\n-------OK--------\n");
+        printf("Nb tetri : %d\n\n", piece_nbr);
+		tab = pieces_intab(av[1]);
+		list = piece_inlist(piece_nbr, tab);
 	}
+	else
+		ft_putstr("FORMAT ERROR");
 	return (0);
 }
