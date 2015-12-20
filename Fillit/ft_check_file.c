@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 09:26:28 by fviolin           #+#    #+#             */
-/*   Updated: 2015/12/18 11:57:15 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/20 14:52:11 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static	int		ft_check_tetri(char *s)
 {
 	int count;
 
+	count = 0;
 	while (*s)
 	{
-		count = 0;
 		if (*s == '#')
 		{
 			count++;

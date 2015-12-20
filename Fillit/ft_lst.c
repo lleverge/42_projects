@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/18 17:37:55 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/20 16:15:25 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,29 @@ int			count_height(char **piece)
 	int	count;
 	int	i;
 	int	j;
+	int flag;
 
-	count = 1;
-	i = 1;
-	while (piece[i])
+	count = 0;
+	i = 0;
+	flag = 0;
+	while (piece[i] != 0)
 	{
 		j = 0;
 		while (piece[i][j])
 		{
-			if (piece[i][j] == '#' && piece[i - 1][j] == '#')
+			if (piece[i][j] == '#' && i == 0 && flag == 0)
+			{
 				count++;
+				flag = 1;
+			}
+			if ( i > 0 && piece[i][j] == '#' && piece[i - 1][j] == '#' && flag == 0)
+			{
+				flag = 1;
+				count++;
+			}
 			j++;
 		}
+		flag = 0;
 		i++;
 	}
 	return (count);
@@ -44,7 +55,7 @@ int			count_width(char **piece)
 
 	i = 0;
 	count = 0;
-	count_max = 42;
+	count_max = 0;
 	while (piece[i])
 	{
 		j = 0;

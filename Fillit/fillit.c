@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:06:47 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/18 17:41:10 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/20 16:03:40 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 char		**ft_split_tetri(char **tab, int start, int end)
 {
-	char **piece;
+	char	**piece;
+	int		i;
 
+	i = 0;
 	piece = (char **)malloc(sizeof(char *) * 5);
 	while (start <= end && tab[start])
 	{
-		piece[start] = ft_strdup(tab[start]);
+		piece[i] = ft_strdup(tab[start]);
 		start++;
+		i++;
 	}
-	piece[start] = NULL;
+	piece[i] = 0;
 	return (piece);
 }
 
@@ -89,14 +92,10 @@ int			main(int ac, char **av)
 		list = piece_inlist(piece_nbr, tab);
 		while (list->next)
 		{
+			i = 0;
 			while (list->tetri[i])
 			{
-				j = 0;
-				while (list->tetri[i][j])
-				{
-					ft_putchar(list->tetri[i][j]);
-					j++;
-				}
+				ft_putstr(list->tetri[i]);
 				ft_putchar('\n');
 				i++;
 			}
@@ -112,7 +111,7 @@ int			main(int ac, char **av)
 			ft_putstr("offsety: ");
 			ft_putnbr(list->offsety);
 			ft_putchar('\n');
-			list = list->next;
+			list = list->next; 
 		}
 	}
 	else

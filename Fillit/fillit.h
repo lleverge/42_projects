@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 10:35:48 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/18 16:27:01 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/20 17:04:56 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 # include "srcs/libft.h"
 # include <fcntl.h>
 # define BUF_SIZE 546
+
+typedef struct			s_matrix
+{
+	char				**draw;
+	int					height;
+	int					width;
+	int					pos_x;
+	int					pos_y;
+}						t_matrix;
 
 typedef struct			s_tetri
 {
@@ -27,6 +36,10 @@ typedef struct			s_tetri
 	struct s_tetri		*next;
 }						t_tetri;
 
+void					remove_piece(t_matrix **matrix, char letter);
+int						valid_piece(int i, int j, t_matrix **matrix, char **piece);
+int						put_piece(t_matrix **matrix, int pos_x, int pos_y, t_tetri **piece);
+int						solver(t_matrix **matrix, t_tetri piece);
 char					**ft_split_tetri(char **tab, int start, int end);
 char					**pieces_intab(char *file_name);
 t_tetri					*tetri_lstnew(char **piece, char let);
