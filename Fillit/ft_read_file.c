@@ -6,12 +6,11 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 09:21:50 by fviolin           #+#    #+#             */
-/*   Updated: 2015/12/21 11:42:10 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/21 17:40:35 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "srcs/libft.h"
 
 char	*ft_read_file(char *file)
 {

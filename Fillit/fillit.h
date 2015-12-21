@@ -6,13 +6,13 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 10:35:48 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/21 15:51:01 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/21 18:03:12 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
-# include "srcs/libft.h"
+# include <libft.h>
 # include <fcntl.h>
 # define BUF_SIZE 546
 
@@ -45,7 +45,7 @@ t_matrix				increase_matrix(t_matrix matrix);
 t_matrix				init_matrix(int height, int width);
 void					remove_piece(t_matrix matrix, char letter);
 int						valid_piece(int i, int j, t_matrix matrix, t_tetri *list);
-int						put_piece(t_matrix matrix, t_tetri *list);
+int						put_piece(t_matrix matrix, t_tetri *list, int c, int l);
 int						solver(t_matrix matrix, t_tetri *list);
 char					**ft_split_tetri(char **tab, int start, int end);
 char					**pieces_intab(char *file_name);

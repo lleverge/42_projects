@@ -6,11 +6,12 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:06:47 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/21 16:23:18 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/21 18:35:57 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 void    free_list(t_tetri *list)
 {
@@ -80,6 +81,7 @@ t_tetri		*piece_inlist(int piece_nbr, char **tab)
 	c = 65;
 	list = tetri_lstnew(ft_split_tetri(tab, i, i + 3), c);
 	listtmp = list;
+	piece_nbr--;
 	while (piece_nbr--)
 	{
 		i += 4;
@@ -123,7 +125,12 @@ int			main(int ac, char **av)
 		free_tab(tab);
 		matrix = init_matrix(piece_nbr, piece_nbr);
 		while (solver(matrix, list) == 1)
+		{
+			while (matrix.draw[i])
+				i++;
+			printf("i is %d\n", i);
 			matrix = increase_matrix(matrix);
+		}
 		free_list(list);
 		free_matrix(&matrix);
 	}

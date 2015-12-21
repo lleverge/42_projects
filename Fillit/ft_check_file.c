@@ -6,12 +6,11 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 09:26:28 by fviolin           #+#    #+#             */
-/*   Updated: 2015/12/20 14:52:11 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/21 17:39:04 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "srcs/libft.h"
 
 static	int		ft_check_grid(char *s)
 {

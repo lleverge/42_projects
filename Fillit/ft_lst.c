@@ -6,11 +6,10 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/21 17:04:31 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/21 17:39:39 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "srcs/libft.h"
 #include "fillit.h"
 
 int			count_height(char **piece)
@@ -100,6 +99,7 @@ int			count_offsety(char **piece)
 	int	i;
 	int	j;
 
+	i = 0;
 	while (piece[i])
 	{
 		j = 0;
