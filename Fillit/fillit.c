@@ -6,11 +6,28 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:06:47 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/20 16:03:40 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/21 16:23:18 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void    free_list(t_tetri *list)
+{
+    int     i;
+    t_tetri *tmp;
+
+    i = 0;
+    while (list != NULL)
+    {
+        tmp = list;
+        list = list->next;
+        free_tab(tmp->tetri);
+        tmp->tetri = NULL;
+        free(tmp);
+    }
+    free(list);
+}
 
 char		**ft_split_tetri(char **tab, int start, int end)
 {
@@ -73,13 +90,26 @@ t_tetri		*piece_inlist(int piece_nbr, char **tab)
 	return (listtmp);
 }
 
+void		print_matrix(t_matrix matrix)
+{
+	int i;
+
+	i = 0;
+	while (matrix.draw[i])
+	{
+		ft_putstr(matrix.draw[i]);
+		ft_putchar('\n');
+		i++;
+	}
+}
+
 int			main(int ac, char **av)
 {
-	int		piece_nbr;
-	char	**tab;
-	t_tetri *list;
-	int		i;
-	int		j;
+	int			piece_nbr;
+	char		**tab;
+	t_tetri		*list;
+	t_matrix	matrix;
+	int			i = 0;
 
 	if (ac != 2)
 		ft_error();
@@ -90,29 +120,12 @@ int			main(int ac, char **av)
 		printf("Nb tetri : %d\n\n", piece_nbr);
 		tab = pieces_intab(av[1]);
 		list = piece_inlist(piece_nbr, tab);
-		while (list->next)
-		{
-			i = 0;
-			while (list->tetri[i])
-			{
-				ft_putstr(list->tetri[i]);
-				ft_putchar('\n');
-				i++;
-			}
-			ft_putstr("hauteur: ");
-			ft_putnbr(list->height);
-			ft_putchar('\n');
-			ft_putstr("largeur: ");			
-			ft_putnbr(list->width);
-			ft_putchar('\n');
-			ft_putstr("offsetx: ");
-			ft_putnbr(list->offsetx);
-			ft_putchar('\n');
-			ft_putstr("offsety: ");
-			ft_putnbr(list->offsety);
-			ft_putchar('\n');
-			list = list->next; 
-		}
+		free_tab(tab);
+		matrix = init_matrix(piece_nbr, piece_nbr);
+		while (solver(matrix, list) == 1)
+			matrix = increase_matrix(matrix);
+		free_list(list);
+		free_matrix(&matrix);
 	}
 	else
 		ft_putstr("FORMAT ERROR\n");

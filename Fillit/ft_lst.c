@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/20 16:15:25 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/21 17:04:31 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,22 @@ int			count_offsetx(char **piece)
 {
 	int	i;
 	int	j;
+	int offsetx;
 
 	i = 0;
-	while (piece[i])
+	offsetx = 42;
+	while (i < 4)
 	{
-		j = 0;
-		while (piece[i][j])
+		while (j < 4)
 		{
-			if (piece[i][j] == '#')
-				return (j);
+			if (piece[i][j] == '#' && j < offsetx)
+				offsetx = j;
 			j++;
 		}
+		j = 0;
 		i++;
 	}
-	return (-42);
+	return (offsetx);
 }
 
 int			count_offsety(char **piece)

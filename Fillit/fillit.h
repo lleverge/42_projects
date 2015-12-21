@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 10:35:48 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/20 17:04:56 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/21 15:51:01 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,17 @@ typedef struct			s_tetri
 	struct s_tetri		*next;
 }						t_tetri;
 
-void					remove_piece(t_matrix **matrix, char letter);
-int						valid_piece(int i, int j, t_matrix **matrix, char **piece);
-int						put_piece(t_matrix **matrix, int pos_x, int pos_y, t_tetri **piece);
-int						solver(t_matrix **matrix, t_tetri piece);
+void					print_matrix(t_matrix matrix);
+void					free_list(t_tetri *list);
+void					free_tab(char **tab);
+void					free_matrix(t_matrix *matrix);
+char					*ft_newline(int size);
+t_matrix				increase_matrix(t_matrix matrix);
+t_matrix				init_matrix(int height, int width);
+void					remove_piece(t_matrix matrix, char letter);
+int						valid_piece(int i, int j, t_matrix matrix, t_tetri *list);
+int						put_piece(t_matrix matrix, t_tetri *list);
+int						solver(t_matrix matrix, t_tetri *list);
 char					**ft_split_tetri(char **tab, int start, int end);
 char					**pieces_intab(char *file_name);
 t_tetri					*tetri_lstnew(char **piece, char let);
@@ -48,7 +55,6 @@ int						count_offsetx(char **piece);
 int						count_width(char **piece);
 int						count_height(char **piece);
 t_tetri					*piece_inlist(int piece_nbr, char **tab);
-int						resolve(t_tetri *list, char *map);
 int						place_piece(t_tetri tetri, char *map);
 void					ft_error(void);
 char					*ft_read_file(char *file);

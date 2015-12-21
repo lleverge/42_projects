@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 09:21:50 by fviolin           #+#    #+#             */
-/*   Updated: 2015/12/18 12:14:01 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/21 11:42:10 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,17 @@ int		ft_count_tetri(char *s)
 	i = ft_count_char(s, '#');
 	i = i / 4;
 	return (i);
+}
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		ft_strdel(&(tab[i]));
+		i++;
+	}
+	free(tab);
 }
