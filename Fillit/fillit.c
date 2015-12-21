@@ -111,11 +111,11 @@ void		print_matrix(t_matrix matrix)
 
 int			main(int ac, char **av)
 {
-	int			piece_nbr;
+	int	       piece_nbr;
 	char		**tab;
 	t_tetri		*list;
 	t_matrix	matrix;
-	int			i = 0;
+	int		i = 0;
 
 	if (ac != 2)
 		ft_error();
