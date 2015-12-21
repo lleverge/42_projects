@@ -76,18 +76,22 @@ t_tetri		*piece_inlist(int piece_nbr, char **tab)
 	char	c;
 	t_tetri	*list;
 	t_tetri	*listtmp;
+	int j = 0;
 
 	i = 0;
 	c = 65;
+	list = NULL;
 	list = tetri_lstnew(ft_split_tetri(tab, i, i + 3), c);
 	listtmp = list;
 	piece_nbr--;
 	while (piece_nbr--)
 	{
-		i += 4;
-		c += 1;
-		list->next = tetri_lstnew(ft_split_tetri(tab, i, i + 3), c);
-		list = list->next;
+	  i += 4;
+	  c += 1;
+	  j = 0;
+	  ft_putstr("lal\n");
+	  tetri_lstnew(ft_split_tetri(tab, i, i + 3), c);
+	  list = list->next;
 	}
 	return (listtmp);
 }

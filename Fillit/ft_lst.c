@@ -116,20 +116,20 @@ int			count_offsety(char **piece)
 
 t_tetri		*tetri_lstnew(char **piece, char let)
 {
-	t_tetri	*list;
+  t_tetri	*new;
 
-	list = (t_tetri *)malloc(sizeof(t_tetri));
-	if (!list)
-		return (NULL);
-	else
-	{
-		list->tetri = piece;
-		list->letter = let;
-		list->width = count_width(piece);
-		list->height = count_height(piece);
-		list->offsetx = count_offsetx(piece);
-		list->offsety = count_offsety(piece);
-		list->next = NULL;
-	}
-	return (list);
+  new = (t_tetri *)malloc(sizeof(t_tetri));
+  if (!new)
+    return (NULL);
+  else
+    {
+      new->tetri = piece;
+      new->letter = let;
+      new->width = count_width(piece);
+      new->height = count_height(piece);
+      new->offsetx = count_offsetx(piece);
+      new->offsety = count_offsety(piece);
+      new->next = NULL;
+    }
+  return (new);
 }

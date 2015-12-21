@@ -33,6 +33,7 @@ $(NAME): $(OBJ)
 
 clean:
 	rm -f $(OBJ)
+	rm -f *~
 
 fclean: clean
 	rm -f $(NAME)
