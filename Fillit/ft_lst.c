@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/27 15:59:41 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/27 17:13:31 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int			count_height(char **piece)
 				count++;
 				flag = 1;
 			}
-			if ( i > 0 && piece[i][j] == '#' && piece[i - 1][j] == '#' && flag == 0)
+			if (i > 0 && piece[i][j] == '#'
+				&& piece[i - 1][j] == '#' && flag == 0)
 			{
 				flag = 1;
 				count++;
@@ -131,20 +132,20 @@ void		add_end(t_tetri **head, t_tetri *new)
 
 t_tetri		*tetri_lstnew(char **piece, char let)
 {
-  t_tetri	*new;
- 
-  new = (t_tetri *)malloc(sizeof(t_tetri));
-  if (!new)
-    return (NULL);
-  else
-    {
-      new->tetri = piece;
-      new->letter = let;
-      new->width = count_width(piece);
-      new->height = count_height(piece);
-      new->offsetx = count_offsetx(piece);
-      new->offsety = count_offsety(piece);
-      new->next = NULL;
-    }
-  return (new);
+	t_tetri	*new;
+
+	new = (t_tetri *)malloc(sizeof(t_tetri));
+	if (!new)
+		return (NULL);
+	else
+	{
+		new->tetri = piece;
+		new->letter = let;
+		new->width = count_width(piece);
+		new->height = count_height(piece);
+		new->offsetx = count_offsetx(piece);
+		new->offsety = count_offsety(piece);
+		new->next = NULL;
+	}
+	return (new);
 }

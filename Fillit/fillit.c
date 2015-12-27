@@ -6,28 +6,28 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:06:47 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/27 16:01:44 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/27 17:45:26 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-void    free_list(t_tetri *list)
+void		free_list(t_tetri *list)
 {
-    int     i;
-    t_tetri *tmp;
+	int		i;
+	t_tetri	*tmp;
 
-    i = 0;
-    while (list != NULL)
-    {
-        tmp = list;
-        list = list->next;
-        free_tab(tmp->tetri);
-        tmp->tetri = NULL;
-        free(tmp);
-    }
-    free(list);
+	i = 0;
+	while (list != NULL)
+	{
+		tmp = list;
+		list = list->next;
+		free_tab(tmp->tetri);
+		tmp->tetri = NULL;
+		free(tmp);
+	}
+	free(list);
 }
 
 char		**ft_split_tetri(char **tab, int start, int end)
@@ -95,9 +95,9 @@ void		print_matrix(t_matrix matrix)
 	int i;
 
 	i = 0;
-	while (matrix.draw[i])
+	while (MATRIX[i])
 	{
-		ft_putstr(matrix.draw[i]);
+		ft_putstr(MATRIX[i]);
 		ft_putchar('\n');
 		i++;
 	}
@@ -105,11 +105,13 @@ void		print_matrix(t_matrix matrix)
 
 int			main(int ac, char **av)
 {
-	int	       piece_nbr;
+	int			piece_nbr;
 	char		**tab;
 	t_tetri		*list;
 	t_matrix	matrix;
+	int			i;
 
+	i = 0;
 	if (ac != 2)
 		ft_error();
 	else if (ft_check_file(ft_read_file(av[1])) == 1)
@@ -121,10 +123,14 @@ int			main(int ac, char **av)
 		list = piece_inlist(piece_nbr, tab);
 		free_tab(tab);
 		printf("Hauteur: %d\nLargeur: %d\n", list->height, list->width);
-		printf("Offx: %d\nOffy: %d\n", list->offsetx, list->offsety);
-		matrix = init_matrix(piece_nbr, piece_nbr);
+		printf("Offx: %d\nOffy: %d\n", OFFSETX, OFFSETY);
+		matrix = init_matrix(2);
 		while (solver(matrix, list) == 1)
+		{
+			i++;
+			printf("taille matrice: %d\n", i);
 			matrix = increase_matrix(matrix);
+		}
 		free_list(list);
 		free_matrix(&matrix);
 	}

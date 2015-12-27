@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:19:23 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/27 15:31:38 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/27 17:55:56 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	remove_piece(t_matrix matrix, char letter)
 	int j;
 
 	i = 0;
-	while (matrix.draw[i])
+	while (MATRIX[i])
 	{
 		j = 0;
-		while (matrix.draw[i][j])
+		while (MATRIX[i][j])
 		{
-			if (matrix.draw[i][j] == letter)
-				matrix.draw[i][j] = '.';
+			if (MATRIX[i][j] == letter)
+				MATRIX[i][j] = '.';
 			j++;
 		}
 		i++;
@@ -41,13 +41,15 @@ int		valid_piece(int l, int c, t_matrix matrix, t_tetri *list)
 		return (1);
 	if (c + list->width > matrix.width)
 		return (1);
-	i = list->offsety;
+	i = OFFSETY;
 	while (i < 4)
 	{
-		j = list->offsetx;
+		j = OFFSETX;
 		while (j < 4)
 		{
-			if (list->tetri[i][j] == '#' && matrix.draw[c + i - list->offsety][l + j - list->offsetx] != '.')
+			if (TETRI[i][j] == '#' &&
+				MATRIX[c + i - OFFSETY][l + j - OFFSETX]
+				!= '.')
 				return (1);
 			j++;
 		}
@@ -61,14 +63,14 @@ int		put_piece(t_matrix matrix, t_tetri *list, int l, int c)
 	int i;
 	int j;
 
-	i = list->offsety;
+	i = OFFSETY;
 	while (i <= list->height)
 	{
-		j = list->offsetx;
+		j = OFFSETX;
 		while (j <= list->width)
 		{
-			if (list->tetri[i][j] == '#')
-				matrix.draw[c + i - list->offsety][l + j - list->offsetx] = list->letter;
+			if (TETRI[i][j] == '#')
+				MATRIX[c + i - OFFSETY][l + j - OFFSETX] = LETTER;
 			j++;
 		}
 		i++;
@@ -84,21 +86,21 @@ int		solver(t_matrix matrix, t_tetri *list)
 	int j;
 
 	i = 0;
-	while (matrix.draw[i])
+	while (i < matrix.height)
 	{
 		j = 0;
-		while (matrix.draw[i][j])
+		while (j < matrix.width)
 		{
 			if (valid_piece(i, j, matrix, list) == 0)
 			{
-				printf("Putting piece %c\n", list->letter);
+				printf("Putting piece %c\n", LETTER);
 				put_piece(matrix, list, i, j);
 				if (!list->next)
 					return (0);
 				if (solver(matrix, list->next) == 0)
 					return (0);
 				else
-					remove_piece(matrix, list->letter);
+					remove_piece(matrix, LETTER);
 			}
 			j++;
 		}
