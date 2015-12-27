@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/21 17:39:39 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/27 15:59:41 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,25 @@ int			count_offsety(char **piece)
 	return (-42);
 }
 
+void		add_end(t_tetri **head, t_tetri *new)
+{
+	t_tetri *cur;
+
+	if (!*head)
+	{
+		*head = new;
+		return ;
+	}
+	cur = *head;
+	while (cur->next)
+		cur = cur->next;
+	cur->next = new;
+}
+
 t_tetri		*tetri_lstnew(char **piece, char let)
 {
   t_tetri	*new;
-
+ 
   new = (t_tetri *)malloc(sizeof(t_tetri));
   if (!new)
     return (NULL);

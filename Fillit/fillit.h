@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 10:35:48 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/21 18:03:12 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/27 16:00:24 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct			s_tetri
 	struct s_tetri		*next;
 }						t_tetri;
 
+t_tetri					*tetri_lstnew(char **piece, char let);
+void					add_end(t_tetri **head, t_tetri *new);
 void					print_matrix(t_matrix matrix);
 void					free_list(t_tetri *list);
 void					free_tab(char **tab);

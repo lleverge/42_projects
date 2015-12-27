@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:06:47 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/21 18:35:57 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/27 16:01:44 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char		**pieces_intab(char *file_name)
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr("open error \n");
+		ft_putstr("open error\n");
 		return (NULL);
 	}
 	ret = read(fd, buf, BUF_SIZE);
@@ -74,26 +74,20 @@ t_tetri		*piece_inlist(int piece_nbr, char **tab)
 {
 	int		i;
 	char	c;
-	t_tetri	*list;
-	t_tetri	*listtmp;
-	int j = 0;
+	t_tetri	*head;
 
 	i = 0;
 	c = 65;
-	list = NULL;
-	list = tetri_lstnew(ft_split_tetri(tab, i, i + 3), c);
-	listtmp = list;
+	head = NULL;
+	add_end(&head, tetri_lstnew(ft_split_tetri(tab, i, i + 3), c));
 	piece_nbr--;
 	while (piece_nbr--)
 	{
-	  i += 4;
-	  c += 1;
-	  j = 0;
-	  ft_putstr("lal\n");
-	  tetri_lstnew(ft_split_tetri(tab, i, i + 3), c);
-	  list = list->next;
+		i += 4;
+		c += 1;
+		add_end(&head, tetri_lstnew(ft_split_tetri(tab, i, i + 3), c));
 	}
-	return (listtmp);
+	return (head);
 }
 
 void		print_matrix(t_matrix matrix)
@@ -115,7 +109,6 @@ int			main(int ac, char **av)
 	char		**tab;
 	t_tetri		*list;
 	t_matrix	matrix;
-	int		i = 0;
 
 	if (ac != 2)
 		ft_error();
@@ -127,14 +120,11 @@ int			main(int ac, char **av)
 		tab = pieces_intab(av[1]);
 		list = piece_inlist(piece_nbr, tab);
 		free_tab(tab);
+		printf("Hauteur: %d\nLargeur: %d\n", list->height, list->width);
+		printf("Offx: %d\nOffy: %d\n", list->offsetx, list->offsety);
 		matrix = init_matrix(piece_nbr, piece_nbr);
 		while (solver(matrix, list) == 1)
-		{
-			while (matrix.draw[i])
-				i++;
-			printf("i is %d\n", i);
 			matrix = increase_matrix(matrix);
-		}
 		free_list(list);
 		free_matrix(&matrix);
 	}
