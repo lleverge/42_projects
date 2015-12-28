@@ -6,29 +6,12 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:06:47 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/27 17:45:26 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/28 15:27:13 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
-
-void		free_list(t_tetri *list)
-{
-	int		i;
-	t_tetri	*tmp;
-
-	i = 0;
-	while (list != NULL)
-	{
-		tmp = list;
-		list = list->next;
-		free_tab(tmp->tetri);
-		tmp->tetri = NULL;
-		free(tmp);
-	}
-	free(list);
-}
+#include <stdio.h> ///////TEST//////////////
 
 char		**ft_split_tetri(char **tab, int start, int end)
 {
@@ -88,19 +71,6 @@ t_tetri		*piece_inlist(int piece_nbr, char **tab)
 		add_end(&head, tetri_lstnew(ft_split_tetri(tab, i, i + 3), c));
 	}
 	return (head);
-}
-
-void		print_matrix(t_matrix matrix)
-{
-	int i;
-
-	i = 0;
-	while (MATRIX[i])
-	{
-		ft_putstr(MATRIX[i]);
-		ft_putchar('\n');
-		i++;
-	}
 }
 
 int			main(int ac, char **av)
