@@ -6,129 +6,11 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/27 17:13:31 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/28 15:10:52 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-int			count_height(char **piece)
-{
-	int	count;
-	int	i;
-	int	j;
-	int flag;
-
-	count = 0;
-	i = 0;
-	flag = 0;
-	while (piece[i] != 0)
-	{
-		j = 0;
-		while (piece[i][j])
-		{
-			if (piece[i][j] == '#' && i == 0 && flag == 0)
-			{
-				count++;
-				flag = 1;
-			}
-			if (i > 0 && piece[i][j] == '#'
-				&& piece[i - 1][j] == '#' && flag == 0)
-			{
-				flag = 1;
-				count++;
-			}
-			j++;
-		}
-		flag = 0;
-		i++;
-	}
-	return (count);
-}
-
-int			count_width(char **piece)
-{
-	int	i;
-	int	j;
-	int	count;
-	int	count_max;
-
-	i = 0;
-	count = 0;
-	count_max = 0;
-	while (piece[i])
-	{
-		j = 0;
-		count = 0;
-		while (piece[i][j])
-		{
-			if (piece[i][j] == '#')
-				count++;
-			j++;
-		}
-		if (count > count_max)
-			count_max = count;
-		i++;
-	}
-	return (count_max);
-}
-
-int			count_offsetx(char **piece)
-{
-	int	i;
-	int	j;
-	int offsetx;
-
-	i = 0;
-	offsetx = 42;
-	while (i < 4)
-	{
-		while (j < 4)
-		{
-			if (piece[i][j] == '#' && j < offsetx)
-				offsetx = j;
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	return (offsetx);
-}
-
-int			count_offsety(char **piece)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (piece[i])
-	{
-		j = 0;
-		while (piece[i][j])
-		{
-			if (piece[i][j] == '#')
-				return (i);
-			j++;
-		}
-		i++;
-	}
-	return (-42);
-}
-
-void		add_end(t_tetri **head, t_tetri *new)
-{
-	t_tetri *cur;
-
-	if (!*head)
-	{
-		*head = new;
-		return ;
-	}
-	cur = *head;
-	while (cur->next)
-		cur = cur->next;
-	cur->next = new;
-}
 
 t_tetri		*tetri_lstnew(char **piece, char let)
 {
@@ -148,4 +30,36 @@ t_tetri		*tetri_lstnew(char **piece, char let)
 		new->next = NULL;
 	}
 	return (new);
+}
+
+void		add_end(t_tetri **head, t_tetri *new) //**head?!
+{
+	t_tetri *cur;
+
+	if (!*head)
+	{
+		*head = new;
+		return ;
+	}
+	cur = *head;
+	while (cur->next)
+		cur = cur->next;
+	cur->next = new;
+}
+
+void		free_list(t_tetri *list)
+{
+	int		i;
+	t_tetri	*tmp;
+
+	i = 0;
+	while (list != NULL)
+	{
+		tmp = list;
+		list = list->next;
+		free_tab(tmp->tetri);
+		tmp->tetri = NULL;
+		free(tmp);
+	}
+	free(list);
 }
