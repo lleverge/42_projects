@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 17:20:42 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/27 17:44:21 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/28 15:27:58 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,17 @@ void			free_matrix(t_matrix *matrix)
 		i++;
 	}
 	matrix->draw = NULL;
+}
+
+void			print_matrix(t_matrix matrix)
+{
+	int i;
+
+	i = 0;
+	while (MATRIX[i])
+	{
+		ft_putstr(MATRIX[i]);
+		ft_putchar('\n');
+		i++;
+	}
 }
