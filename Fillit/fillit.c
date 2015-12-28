@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:06:47 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/28 15:27:13 by fviolin          ###   ########.fr       */
+/*   Updated: 2015/12/28 16:25:14 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int			main(int ac, char **av)
 	t_matrix	matrix;
 	int			i;
 
-	i = 0;
+	i = 2;
 	if (ac != 2)
 		ft_error();
 	else if (ft_check_file(ft_read_file(av[1])) == 1)

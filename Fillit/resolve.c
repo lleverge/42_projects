@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:19:23 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/28 15:52:54 by fviolin          ###   ########.fr       */
+/*   Updated: 2015/12/28 16:46:17 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int		valid_piece(int l, int c, t_matrix matrix, t_tetri *list)
 	if (c + list->width > matrix.width)
 		return (1);
 	i = OFFSETY;
-	while (i < 4)
+	while (i < OFFSETY + list->height)
 	{
 		j = OFFSETX;
-		while (j < 4)
+		while (j < OFFSETX + list->width)
 		{
 			if (TETRI[i][j] == '#' &&
-				MATRIX[c + i - OFFSETY][l + j - OFFSETX]
+				MATRIX[l + i - OFFSETY][c + j - OFFSETX]
 				!= '.')
 				return (1);
 			j++;
@@ -70,13 +70,13 @@ int		put_piece(t_matrix matrix, t_tetri *list, int l, int c)
 		while (j <= list->width)
 		{
 			if (TETRI[i][j] == '#')
-				MATRIX[c + i - OFFSETY][l + j - OFFSETX] = LETTER;
+				MATRIX[l + i - OFFSETY][c + j - OFFSETX] = LETTER;
 			j++;
 		}
 		i++;
 	}
-	print_matrix(matrix);
-	ft_putchar('\n');
+//	print_matrix(matrix);
+//	ft_putchar('\n');
 	return (0);
 }
 
@@ -93,7 +93,6 @@ int		solver(t_matrix matrix, t_tetri *list)
 		{
 			if (valid_piece(i, j, matrix, list) == 0)
 			{
-				printf("Putting piece %c\n", LETTER);
 				put_piece(matrix, list, i, j);
 				if (!list->next)
 					return (0);
