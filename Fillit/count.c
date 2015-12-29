@@ -6,65 +6,61 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 14:45:22 by fviolin           #+#    #+#             */
-/*   Updated: 2015/12/29 11:53:19 by fviolin          ###   ########.fr       */
+/*   Updated: 2015/12/29 13:23:30 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-int		count_height(char **piece)
+int		count_width(char **piece)
 {
 	int	i;
 	int j;
 	int	count;
-	int	count_max;
 
 	j = 0;
 	count = 0;
-	count_max = 0;
 	while (j < 4)
 	{
 		i = 0;
-		count = 0;
 		while (i < 4)
 		{
-			if (piece[i][j] == '#')
+			if (piece[i][j] != '.')
+			{
 				count++;
-			if (count > count_max)
-				count_max = count;
+				break;
+			}
 			i++;
 		}
 		j++;
 	}
-	return (count_max);
+	return (count);
 }
 
-int		count_width(char **piece)
+int		count_height(char **piece)
 {
 	int i;
 	int	j;
 	int	count;
-	int	count_max;
 
 	i = 0;
 	count = 0;
-	count_max = 0;
-	while (piece[i])
+	while (i < 4)
 	{
 		j = 0;
-		count = 0;
-		while (piece[i][j])
+		while (j < 4)
 		{
-			if (piece[i][j] == '#')
+			if (piece[i][j] != '.')
+			{
 				count++;
+				break;
+			}
 			j++;
 		}
-		if (count > count_max)
-			count_max = count;
 		i++;
 	}
-	return (count_max);
+	return (count);
 }
 
 int		count_offsetx(char **piece)
