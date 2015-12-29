@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:19:23 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/28 16:46:17 by fviolin          ###   ########.fr       */
+/*   Updated: 2015/12/29 11:15:16 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ int		valid_piece(int l, int c, t_matrix matrix, t_tetri *list)
 	}
 	return (0);
 }
-
+/* l et c etaient inverses*/
 int		put_piece(t_matrix matrix, t_tetri *list, int l, int c)
 {
 	int i;
 	int j;
 
 	i = OFFSETY;
-	while (i <= list->height)
+	while (i < OFFSETY + list->height)//(i <= list->height)
 	{
 		j = OFFSETX;
-		while (j <= list->width)
+		while (j <= OFFSETX + list->width)//(j <= list->width)
 		{
 			if (TETRI[i][j] == '#')
 				MATRIX[l + i - OFFSETY][c + j - OFFSETX] = LETTER;
@@ -75,8 +75,8 @@ int		put_piece(t_matrix matrix, t_tetri *list, int l, int c)
 		}
 		i++;
 	}
-//	print_matrix(matrix);
-//	ft_putchar('\n');
+	print_matrix(matrix);
+	ft_putchar('\n');
 	return (0);
 }
 
