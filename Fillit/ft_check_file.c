@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 09:26:28 by fviolin           #+#    #+#             */
-/*   Updated: 2015/12/21 17:39:04 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/29 14:31:19 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,9 @@ static	int		ft_check_tetri(char *s)
 static	int		ft_print_error_tetri(char *s)
 {
 	if (ft_check_tetri(s) == 0)
-	{
-		write(1, "\n---UNVALID TETRI---", 20);
 		return (0);
-	}
 	else
-	{
-		write(1, "\n---VALID TETRI---", 18);
 		return (1);
-	}
 }
 
 int				ft_check_file(char *s)

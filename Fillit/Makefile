@@ -6,13 +6,13 @@
 #    By: lleverge <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/21 17:32:58 by lleverge          #+#    #+#              #
-#    Updated: 2015/12/28 15:14:47 by fviolin          ###   ########.fr        #
+#    Updated: 2015/12/29 14:41:57 by lleverge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRC =	fillit.c		ft_check_file.c		ft_lst.c	count.c\
+SRC =	main.c			ft_check_file.c		ft_lst.c	count.c\
 		ft_read_file.c	matrix.c			resolve.c
 
 INCLUDES = -I libft/ -I./

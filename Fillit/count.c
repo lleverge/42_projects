@@ -6,12 +6,11 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 14:45:22 by fviolin           #+#    #+#             */
-/*   Updated: 2015/12/29 13:23:30 by fviolin          ###   ########.fr       */
+/*   Updated: 2015/12/29 14:34:25 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 int		count_width(char **piece)
 {
