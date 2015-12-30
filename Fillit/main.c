@@ -87,7 +87,7 @@ int			main(int ac, char **av)
 		tab = pieces_intab(av[1]);
 		list = piece_inlist(piece_nbr, tab);
 		free_tab(tab);
-		matrix = init_matrix(piece_nbr);
+		matrix = init_matrix(2);
 		while (solver(matrix, list) == 1)
 			matrix = increase_matrix(matrix);
 		free_list(list);
