@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 10:35:48 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/29 10:13:00 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/30 10:24:35 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ t_matrix				init_matrix(int size);
 void					remove_piece(t_matrix matrix, char letter);
 int						valid_piece(int line, int col,
 						t_matrix matrix, t_tetri *list);
-int						put_piece(t_matrix matrix, t_tetri *list, int col, int line);
+int						put_piece(t_matrix matrix, t_tetri *list,
+							int col, int line);
 int						solver(t_matrix matrix, t_tetri *list);
 char					**ft_split_tetri(char **tab, int start, int end);
 char					**pieces_intab(char *file_name);

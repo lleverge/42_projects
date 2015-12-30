@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/28 15:10:52 by fviolin          ###   ########.fr       */
+/*   Updated: 2015/12/30 10:24:07 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_tetri		*tetri_lstnew(char **piece, char let)
 	return (new);
 }
 
-void		add_end(t_tetri **head, t_tetri *new) //**head?!
+void		add_end(t_tetri **head, t_tetri *new)
 {
 	t_tetri *cur;
 
