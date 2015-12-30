@@ -6,7 +6,7 @@
 #    By: lleverge <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/21 17:32:58 by lleverge          #+#    #+#              #
-#    Updated: 2015/12/30 11:16:18 by fviolin          ###   ########.fr        #
+#    Updated: 2015/12/30 11:20:07 by fviolin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ SRC =	main.c			ft_check_file.c		ft_lst.c	count.c\
 		ft_read_file.c	matrix.c			resolve.c
 
 OBJ = $(SRC:.c=.o)
-SRCI = libft.h
 LIB = ./libft/libft.a
 FLAGS = -Wall -Wextra -Werror
 
