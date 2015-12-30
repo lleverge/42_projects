@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:06:47 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/30 15:32:48 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/30 15:39:46 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int			main(int ac, char **av)
 	else if (ft_check_file(ft_read_file(av[1])) == 1)
 	{
 		piece_nbr = ft_count_tetri(ft_read_file(av[1]));
-		
 		tab = pieces_intab(av[1]);
 		list = piece_inlist(piece_nbr, tab);
 		free_tab(tab);
