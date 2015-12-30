@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 17:20:42 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/29 14:26:07 by lleverge         ###   ########.fr       */
+/*   Updated: 2015/12/30 14:54:30 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ t_matrix		init_matrix(int size)
 	MATRIX[i] = 0;
 	matrix.height = size;
 	matrix.width = size;
-	matrix.pos_x = 0;
-	matrix.pos_y = 0;
 	return (matrix);
 }
 
@@ -55,20 +53,14 @@ t_matrix		increase_matrix(t_matrix matrix)
 	t_matrix	new_matrix;
 
 	new_matrix = init_matrix(matrix.height + 1);
+	free_matrix(&matrix);
 	return (new_matrix);
 }
 
 void			free_matrix(t_matrix *matrix)
 {
-	int	i;
-
-	i = 0;
-	while (matrix->draw[i] != 0)
-	{
-		ft_strdel(&(matrix->draw[i]));
-		i++;
-	}
-	matrix->draw = NULL;
+	free_tab(matrix->draw);
+	matrix = NULL;
 }
 
 void			print_matrix(t_matrix matrix)

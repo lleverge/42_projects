@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 10:46:18 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/30 10:24:07 by fviolin          ###   ########.fr       */
+/*   Updated: 2015/12/30 14:37:52 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ void		add_end(t_tetri **head, t_tetri *new)
 	cur->next = new;
 }
 
-void		free_list(t_tetri *list)
+void	free_list(t_tetri **head)
 {
-	int		i;
-	t_tetri	*tmp;
-
-	i = 0;
-	while (list != NULL)
+	t_tetri *current;
+	t_tetri *next;
+	
+	current = *head;
+	while (current != NULL) 
 	{
-		tmp = list;
-		list = list->next;
-		free_tab(tmp->tetri);
-		tmp->tetri = NULL;
-		free(tmp);
+		next = current->next;
+		free_tab(current->tetri);
+		current->tetri = NULL;
+		free(current);
+		current = next;
 	}
-	free(list);
+	*head = NULL;
 }

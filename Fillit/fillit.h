@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 10:35:48 by lleverge          #+#    #+#             */
-/*   Updated: 2015/12/30 11:09:20 by fviolin          ###   ########.fr       */
+/*   Updated: 2015/12/30 14:49:13 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ typedef struct			s_matrix
 	char				**draw;
 	int					height;
 	int					width;
-	int					pos_x;
-	int					pos_y;
 }						t_matrix;
 
 typedef struct			s_tetri
@@ -44,7 +42,7 @@ typedef struct			s_tetri
 t_tetri					*tetri_lstnew(char **piece, char let);
 void					add_end(t_tetri **head, t_tetri *new);
 void					print_matrix(t_matrix matrix);
-void					free_list(t_tetri *list);
+void					free_list(t_tetri **head);
 void					free_tab(char **tab);
 void					free_matrix(t_matrix *matrix);
 char					*ft_newline(int size);
