@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 09:26:28 by fviolin           #+#    #+#             */
-/*   Updated: 2015/12/30 15:46:58 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/01/05 09:54:57 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static	int		ft_check_grid(char *s)
 	if (!s[i] && (nb_char % 16 == 0) && (nb_line % 4 == 0))
 		nb_tetri++;
 	if ((ft_count_char(s, '#') == nb_tetri * 4) &&
-			(ft_count_char(s, '.') == nb_tetri * 12) &&
-			(ft_count_char(s, '\n') == nb_line + nb_tetri - 1))
+		(ft_count_char(s, '.') == nb_tetri * 12)
+		&& (ft_count_char(s, '\n') == nb_line + nb_tetri - 1))
 		return (1);
 	return (0);
 }
@@ -77,11 +77,34 @@ static	int		ft_print_error_tetri(char *s)
 	}
 }
 
+static	int		ft_check_newline(char *s)
+{
+	int char_nbr;
+	int line_nbr;
+	int i;
+
+	i = 0;
+	char_nbr = 0;
+	line_nbr = 0;
+	while (s[i])
+	{
+		if (s[i] == '.' || s[i] == '#')
+			char_nbr++;
+		if ((char_nbr % 4 == 0) && s[i] == '\n' && s[i - 1] != '\n')
+			line_nbr++;
+		if (s[i] != '\n' && s[i - 1] != '\n' && line_nbr % 5 == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int				ft_check_file(char *s)
 {
 	if (s)
 	{
-		if (ft_check_grid(s) == 1 && ft_print_error_tetri(s) == 1)
+		if (ft_check_grid(s) == 1 && ft_print_error_tetri(s) == 1
+			&& ft_check_newline(s) == 1)
 			return (1);
 	}
 	return (0);
