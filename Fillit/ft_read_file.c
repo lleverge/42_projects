@@ -30,7 +30,7 @@ char	*ft_read_file(char *file)
 
 void	ft_error(void)
 {
-	ft_putstr_fd("error", 2);
+	ft_putstr_fd("error\n", 1);
 	exit(0);
 }
 
