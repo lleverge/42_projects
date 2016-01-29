@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/01/29 17:02:41 by lleverge         ###   ########.fr       */
+/*   Created: 2016/01/29 17:00:42 by lleverge          #+#    #+#             */
+/*   Updated: 2016/01/29 17:05:25 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_H
-# define FT_LS_H
-# include "libft/libft.h"
-# include <dirent.h>
-# include <stdlib.h>
+#include "ft_ls.h"
 
-int             ft_rec_list_dir(char *name);
-int				ft_opendir_error(void);
-int				ft_close_dir_error(void);
+int		ft_opendir_error(void)
+{
+	ft_putstr_fd("opendirerror\n", 2);
+	return (-1);
+}
 
-#endif
+int		ft_closedir_error(void)
+{
+	ft_putstr_fd("closedirerror\n", 2);
+	return (-1);
+}
