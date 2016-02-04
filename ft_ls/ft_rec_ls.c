@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:26:04 by lleverge          #+#    #+#             */
-/*   Updated: 2016/01/29 17:03:45 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/01/29 18:01:34 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static void		ft_display_path(char *d_name)
 
 static void		ft_display_dirname(char *name)
 {
-	ft_putchar('\n');
-	ft_putstr(name);
-	ft_putstr(":\n");
+		ft_putchar('\n');
+		ft_putstr(name);
+		ft_putstr(":\n");
 }
 
 static void		ft_new_path(char *name, char *d_name)
