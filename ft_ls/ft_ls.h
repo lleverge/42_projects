@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 13:36:28 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 14:35:57 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ char				*ft_perm(t_stat *stat);
 void				ft_create_list(char *path);
 void				get_infos(char *fname, t_elem *tmp, t_stat stat);
 t_elem				*ft_elem_swap(t_elem *elem1, t_elem *elem2);
-
+void				ft_display_l(t_elem *list, int blocks, t_pad *pad);
 #endif

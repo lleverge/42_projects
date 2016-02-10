@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:24:16 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 13:36:52 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 14:36:10 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ void		ft_create_list(char *path)
 		return ;
 	}
 	elem = readdir(ret);
-	if (!(list = (t_elem *)malloc(sizeof(t_elem))))
-		exit(1);
-	if (!(pad = (t_pad *)malloc(sizeof(t_pad))))
+	if (!(list = (t_elem *)malloc(sizeof(t_elem))) ||
+		(!(pad = (t_pad *)malloc(sizeof(t_pad)))))
 		exit(1);
 	list = NULL;
 	while (elem)
@@ -65,16 +64,7 @@ void		ft_create_list(char *path)
 		elem = readdir(ret);
 	}
 	list = ft_sort_ascii(list);
-	ft_putstr("total ");
-	ft_putnbr(count_blocks(list));
-	ft_putchar('\n');
-	ft_padding(&list, pad);
-	while (list)
-	{
-		print_infos(list);
-		ft_putchar('\n');
-		list = list->next;
-	}
+	ft_display_l(list, count_blocks(list), pad);
 	closedir(ret);
 }
 
