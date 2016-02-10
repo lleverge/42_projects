@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:24:16 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/05 13:53:18 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 09:52:20 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,3 @@ t_elem		*info_in_list(t_elem *start, char *fname, char *path)
 	voyager->next = tmp;
 	return (start);
 }
-

@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 09:38:40 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 09:48:33 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 09:53:23 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_elem			*ft_elem_swap(t_elem *elem1, t_elem *elem2)
 {
-		elem1->next = elem2->next;
-		elem2->next = elem1;
-		return (elem2);
+	elem1->next = elem2->next;
+	elem2->next = elem1;
+	return (elem2);
 }
 
 t_elem			*ft_sort_ascii(t_elem *elem)

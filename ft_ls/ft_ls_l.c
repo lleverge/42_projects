@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 18:07:03 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 09:50:14 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 09:52:56 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ int			main(int argc, char **argv)
 	path = NULL;
 	while (++i < argc)
 	{
-			path = argv[i];
-			ft_create_list(ft_strjoin("/", path));
+		path = argv[i];
+		ft_create_list(ft_strjoin("/", path));
 	}
 	if (!path)
 		ft_create_list("./");

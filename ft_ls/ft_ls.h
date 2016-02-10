@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 09:46:11 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 09:54:11 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct		s_opt
 {
 	int				l;
 	int				a;
-	int				R;
+	int				rec;
 	int				r;
 	int				t;
 }					t_opt;
@@ -53,7 +53,7 @@ typedef struct		s_elem
 	struct s_elem	*next;
 }					t_elem;
 
-typedef struct stat t_stat;
+typedef struct stat	t_stat;
 
 t_elem				*ft_sort_ascii(t_elem *elem);
 t_elem				*info_in_list(t_elem *start, char *fname, char *path);
