@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 09:54:11 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 12:02:13 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ typedef struct		s_elem
 
 typedef struct stat	t_stat;
 
+
+int					count_blocks(t_elem *list);
+void				print_infos(t_elem *list);
 t_elem				*ft_sort_ascii(t_elem *elem);
 t_elem				*info_in_list(t_elem *start, char *fname, char *path);
 char				*ft_rights(char *perm, int i, t_stat *stat);

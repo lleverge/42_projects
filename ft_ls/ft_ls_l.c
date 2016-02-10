@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 18:07:03 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 10:26:58 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 12:04:37 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void		get_infos(char *fname, t_elem *tmp, t_stat stat)
 	tmp->blocks = stat.st_blocks;
 	tmp->perm = ft_perm(&stat);
 	tmp->links = stat.st_nlink;
-	tmp->is_dir = (tmp->perm[0] == 'd' && REAL_DIR(tmp->name));
+	if (tmp->perm[0] == 'd')
+		tmp->is_dir = 1;
+	else
+		tmp->is_dir = 0;
 	tmp->size = stat.st_size;
 	tmp->next = NULL;
 }
@@ -63,62 +66,32 @@ char		*ft_perm(t_stat *stat)
 	return (ft_strdup(ft_rights(perm, i, stat)));
 }
 
-void		ft_create_list(char *path)
+void		print_infos(t_elem *list)
 {
-	DIR				*ret;
-	struct dirent	*elem;
-	t_elem			*list;
-	int				i;
-
-	i = 1;
-	if ((ret = opendir(path)) == NULL)
-	{
-		ft_putstr("opendir error\n");
-		return ;
-	}
-	elem = readdir(ret);
-	if (!(list = (t_elem *)malloc(sizeof(t_elem))))
-		exit(1);
-	list = NULL;
-	while (elem)
-	{
-		list = info_in_list(list, elem->d_name, ft_strjoin(path, elem->d_name));
-		elem = readdir(ret);
-	}
-	list = ft_sort_ascii(list);
-	while (list)
-	{
-		//	printf("maillon %d:\n\n", i);
-		printf("name: %s\n", list->name);
-		/*	printf("modif_last: %lld\n", list->modif_last);
-		printf("create: %ld\n", list->create);
-		printf("blocks: %d\n", list->blocks);
-		printf("perm: %s\n", list->perm);
-		printf("links: %d\n", list->links);
-		printf("user: %s\n", list->user);
-		printf("group: %s\n", list->group);
-		printf("is_dir: %d\n", list->is_dir);
-		printf("count: %d\n", list->count);
-		printf("size: %zu\n\n", list->size);*/
-		i++;
-		list = list->next;
-	}
-	closedir(ret);
+	ft_putstr(list->perm);
+	ft_putstr("  ");
+	ft_putnbr(list->links);
+	ft_putchar(' ');
+	ft_putstr(list->user);
+	ft_putstr("  ");
+	ft_putstr(list->group);
+	ft_putstr("  ");
+	ft_putnbr(list->size);
+	ft_putchar(' ');
+	ft_putstr(ft_strsub(ctime(&list->create), 4, 12));
+	ft_putchar(' ');
+	ft_putstr(list->name);
 }
 
-int			main(int argc, char **argv)
+int			count_blocks(t_elem *list)
 {
-	int			i;
-	char		*path;
+	int	count;
 
-	i = 0;
-	path = NULL;
-	while (++i < argc)
+	count = 0;
+	while (list != NULL)
 	{
-		path = argv[i];
-		ft_create_list(path);
+		count += list->blocks;
+		list = list->next;
 	}
-	if (!path)
-		ft_create_list("./");
-	return (0);
+	return (count);
 }
