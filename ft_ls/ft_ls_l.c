@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 18:07:03 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 09:32:49 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 09:50:14 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void		ft_create_list(char *path)
 		list = info_in_list(list, elem->d_name, ft_strjoin(path, elem->d_name));
 		elem = readdir(ret);
 	}
+	list = ft_sort_ascii(list);
 	while (list)
 	{
 		printf("maillon %d:\n\n", i);
