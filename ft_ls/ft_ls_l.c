@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 18:07:03 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 09:52:56 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 10:26:58 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ void		ft_create_list(char *path)
 	list = ft_sort_ascii(list);
 	while (list)
 	{
-		printf("maillon %d:\n\n", i);
+		//	printf("maillon %d:\n\n", i);
 		printf("name: %s\n", list->name);
-		printf("modif_last: %lld\n", list->modif_last);
+		/*	printf("modif_last: %lld\n", list->modif_last);
 		printf("create: %ld\n", list->create);
 		printf("blocks: %d\n", list->blocks);
 		printf("perm: %s\n", list->perm);
@@ -99,7 +99,7 @@ void		ft_create_list(char *path)
 		printf("group: %s\n", list->group);
 		printf("is_dir: %d\n", list->is_dir);
 		printf("count: %d\n", list->count);
-		printf("size: %zu\n\n", list->size);
+		printf("size: %zu\n\n", list->size);*/
 		i++;
 		list = list->next;
 	}
@@ -116,7 +116,7 @@ int			main(int argc, char **argv)
 	while (++i < argc)
 	{
 		path = argv[i];
-		ft_create_list(ft_strjoin("/", path));
+		ft_create_list(path);
 	}
 	if (!path)
 		ft_create_list("./");
