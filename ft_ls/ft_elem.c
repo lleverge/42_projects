@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:24:16 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 12:04:28 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 13:36:52 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ void		ft_create_list(char *path)
 	DIR				*ret;
 	struct dirent	*elem;
 	t_elem			*list;
+	t_pad			*pad;
 
+	pad = NULL;
     if ((ret = opendir(path)) == NULL)
 	{
 		ft_putstr("opendir error\n");
@@ -53,6 +55,8 @@ void		ft_create_list(char *path)
 	}
 	elem = readdir(ret);
 	if (!(list = (t_elem *)malloc(sizeof(t_elem))))
+		exit(1);
+	if (!(pad = (t_pad *)malloc(sizeof(t_pad))))
 		exit(1);
 	list = NULL;
 	while (elem)
@@ -64,6 +68,7 @@ void		ft_create_list(char *path)
 	ft_putstr("total ");
 	ft_putnbr(count_blocks(list));
 	ft_putchar('\n');
+	ft_padding(&list, pad);
 	while (list)
 	{
 		print_infos(list);

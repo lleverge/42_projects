@@ -6,13 +6,13 @@
 #    By: lleverge <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/21 17:32:58 by lleverge          #+#    #+#              #
-#    Updated: 2016/02/10 09:46:59 by lleverge         ###   ########.fr        #
+#    Updated: 2016/02/10 13:21:47 by lleverge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 
-SRC = ft_ls_l.c		ft_elem.c	ft_sort.c
+SRC = ft_ls_l.c		ft_elem.c	ft_sort.c	ft_padding.c
 
 OBJ = $(SRC:.c=.o)
 LIB = ./libft/libft.a

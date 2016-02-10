@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 12:02:13 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 13:36:28 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ typedef struct		s_opt
 	int				t;
 }					t_opt;
 
+typedef struct		s_pad
+{
+	size_t			links;
+	size_t			uid;
+	size_t			gid;
+	size_t			size;
+}					t_pad;
+
 typedef struct		s_elem
 {
 	char			*name;
@@ -44,18 +52,18 @@ typedef struct		s_elem
 	time_t			create;
 	int				blocks;
 	char			*perm;
-	int				links;
+	char			*links;
 	char			*user;
 	char			*group;
 	int				is_dir;
 	int				count;
-	size_t			size;
+	char			*size;
 	struct s_elem	*next;
 }					t_elem;
 
 typedef struct stat	t_stat;
 
-
+void				ft_padding(t_elem **elem, t_pad *pad);
 int					count_blocks(t_elem *list);
 void				print_infos(t_elem *list);
 t_elem				*ft_sort_ascii(t_elem *elem);

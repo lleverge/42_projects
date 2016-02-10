@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 18:07:03 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 12:04:37 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/10 13:26:14 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void		get_infos(char *fname, t_elem *tmp, t_stat stat)
 	tmp->create = stat.st_mtime;
 	tmp->blocks = stat.st_blocks;
 	tmp->perm = ft_perm(&stat);
-	tmp->links = stat.st_nlink;
+	tmp->links = ft_itoa(stat.st_nlink);
 	if (tmp->perm[0] == 'd')
 		tmp->is_dir = 1;
 	else
 		tmp->is_dir = 0;
-	tmp->size = stat.st_size;
+	tmp->size = ft_itoa(stat.st_size);
 	tmp->next = NULL;
 }
 
@@ -70,13 +70,13 @@ void		print_infos(t_elem *list)
 {
 	ft_putstr(list->perm);
 	ft_putstr("  ");
-	ft_putnbr(list->links);
+	ft_putstr(list->links);
 	ft_putchar(' ');
 	ft_putstr(list->user);
 	ft_putstr("  ");
 	ft_putstr(list->group);
 	ft_putstr("  ");
-	ft_putnbr(list->size);
+	ft_putstr(list->size);
 	ft_putchar(' ');
 	ft_putstr(ft_strsub(ctime(&list->create), 4, 12));
 	ft_putchar(' ');
