@@ -48,7 +48,7 @@ void		ft_display(t_elem *list, t_opt *options, t_pad *pad)
 		return ;
 }
 
-void		ft_create_list(char *path, t_opt options)
+void		ft_create_list(char *path, t_opt *options)
 {
 	DIR				*ret;
 	struct dirent	*elem;
@@ -79,7 +79,7 @@ int			main(int argc, char **argv)
 	char	*path;
 	t_opt	*options;
 
-	i = 0;
+	i = 1;
 	path = NULL;
 	options = NULL;
 	if (!(options = (t_opt *)malloc(sizeof(t_opt))))
@@ -89,9 +89,9 @@ int			main(int argc, char **argv)
 	while (++i < argc)
 	{
 		path = argv[i];
-		ft_create_list(ft_strjoin(path, "/"));
+		ft_create_list(ft_strjoin(path, "/"), options);
 	}
 	if (!path)
-		ft_create_list("./");
+	  ft_create_list("./", options);
 	return (0);
 }

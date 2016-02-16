@@ -14,16 +14,25 @@
 
 void	ft_detect_opt(char **argv, int argc, t_opt *options)
 {
-	int		i;
-	int		j;
+  int		i;
+  int		j;
 
-	i = 0;
-	j = 0;
-	while (i < argc)
+  i = 0;
+  j = 0;
+  while (i < argc)
+    {
+      j = 0;
+      if (argv[i][j] == '-')
 	{
-		j = 0;
-		if (argv[i][j] == '-')
+	  while (argv[i][j])
+	    {
+	      if (argv[i][j] == 'l')
+		options->l = 1;
+	      j++;
+	    }
 	}
+      i++;
+    }
 }
 
 void	init_opt(t_opt *options)

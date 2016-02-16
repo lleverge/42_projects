@@ -63,6 +63,7 @@ typedef struct		s_elem
 
 typedef struct stat	t_stat;
 
+void				ft_detect_opt(char **argv, int argc,t_opt *options);
 void				init_opt(t_opt *options);
 void				no_file_dir(char *fname);
 void				ft_padding(t_elem **elem, t_pad *pad);
@@ -73,7 +74,7 @@ t_elem				*ft_sort_ascii(t_elem *elem);
 t_elem				*info_in_list(t_elem *start, char *fname, char *path);
 char				*ft_rights(char *perm, int i, t_stat *stat);
 char				*ft_perm(t_stat *stat);
-void				ft_create_list(char *path);
+void				ft_create_list(char *path, t_opt *options);
 void				get_infos(char *fname, t_elem *tmp, t_stat stat);
 t_elem				*ft_elem_swap(t_elem *elem1, t_elem *elem2);
 void				ft_display_l(t_elem *list, int blocks, t_pad *pad);
