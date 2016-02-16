@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_l2.c                                         :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/10 14:12:50 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/16 13:25:02 by lleverge         ###   ########.fr       */
+/*   Created: 2016/02/16 12:48:18 by lleverge          #+#    #+#             */
+/*   Updated: 2016/02/16 13:07:17 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_display_l(t_elem *list, int blocks, t_pad *pad)
+void	no_file_dir(char *fname)
 {
-	ft_putstr("total ");
-    ft_putnbr(blocks);
-    ft_putchar('\n');
-    ft_padding(&list, pad);
-    while (list)
-    {
-		if (REAL_DIR(list->name))
-		{
-			print_infos(list);
-			ft_putchar('\n');
-		}
-			list = list->next;
-    }
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	ft_putstr("ft_ls: ");
+	while (fname[i])
+		i++;
+	while (j < i - 1)
+	{
+		ft_putchar(fname[j]);
+		j++;
+	}
+	perror(" ");
+	return ;
 }

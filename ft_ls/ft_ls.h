@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 14:35:57 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/16 12:59:33 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct		s_elem
 
 typedef struct stat	t_stat;
 
+void				no_file_dir(char *fname);
 void				ft_padding(t_elem **elem, t_pad *pad);
 int					count_blocks(t_elem *list);
 void				print_infos(t_elem *list);

@@ -6,11 +6,13 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:26:04 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 09:54:32 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/16 11:59:32 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+int				ft_rec_list_dir(char *name);
 
 static void		ft_display_path(char *d_name)
 {
@@ -45,7 +47,7 @@ int				ft_rec_list_dir(char *name)
 
 	ds = opendir(name);
 	if (ds == NULL)
-		ft_opendir_error();
+		return (-1);
 	ft_display_dirname(name);
 	while (1)
 	{
@@ -62,7 +64,7 @@ int				ft_rec_list_dir(char *name)
 		}
 	}
 	if (closedir(ds) == -1)
-		ft_close_dir_error();
+		return (-1);
 	return (0);
 }
 

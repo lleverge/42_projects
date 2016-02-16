@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:24:16 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 14:36:10 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/16 13:02:44 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		ft_create_list(char *path)
 	pad = NULL;
     if ((ret = opendir(path)) == NULL)
 	{
-		ft_putstr("opendir error\n");
+		no_file_dir(path);
 		return ;
 	}
 	elem = readdir(ret);
