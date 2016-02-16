@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 09:38:40 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/16 13:27:26 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/16 13:57:30 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,21 @@ t_elem			*ft_sort_ascii(t_elem *elem)
 	{
 		elem = ft_elem_swap(elem, elem->next);
 		elem->next = ft_sort_ascii(elem->next);
+	}
+	return (elem);
+}
+
+t_elem			*ft_sort_time(t_elem *elem)
+{
+	if (!elem)
+		return (NULL);
+	if (elem->next && (elem->modif_last < elem->next->modif_last))
+		elem = ft_elem_swap(elem, elem->next);
+	elem->next = ft_sort_time(elem->next);
+	if (elem->next && (elem->modif_last < elem->next->modif_last))
+	{
+		elem = ft_elem_swap(elem, elem->next);
+		elem->next = ft_sort_time(elem->next);
 	}
 	return (elem);
 }

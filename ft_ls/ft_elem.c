@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:24:16 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/16 13:02:44 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/16 14:27:05 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,15 @@ t_elem		*info_in_list(t_elem *start, char *fname, char *path)
 	return (start);
 }
 
-void		ft_create_list(char *path)
+void		ft_display(t_elem *list, t_opt *options, t_pad *pad)
+{
+	if (options->l == 1)
+		ft_display_l(list, count_blocks(list), pad);
+	else
+		return ;
+}
+
+void		ft_create_list(char *path, t_opt options)
 {
 	DIR				*ret;
 	struct dirent	*elem;
@@ -48,11 +56,8 @@ void		ft_create_list(char *path)
 	t_pad			*pad;
 
 	pad = NULL;
-    if ((ret = opendir(path)) == NULL)
-	{
+	if ((ret = opendir(path)) == NULL)
 		no_file_dir(path);
-		return ;
-	}
 	elem = readdir(ret);
 	if (!(list = (t_elem *)malloc(sizeof(t_elem))) ||
 		(!(pad = (t_pad *)malloc(sizeof(t_pad)))))
@@ -64,7 +69,7 @@ void		ft_create_list(char *path)
 		elem = readdir(ret);
 	}
 	list = ft_sort_ascii(list);
-	ft_display_l(list, count_blocks(list), pad);
+	ft_display(list, options, pad);
 	closedir(ret);
 }
 
@@ -72,9 +77,15 @@ int			main(int argc, char **argv)
 {
 	int		i;
 	char	*path;
+	t_opt	*options;
 
 	i = 0;
 	path = NULL;
+	options = NULL;
+	if (!(options = (t_opt *)malloc(sizeof(t_opt))))
+		return (-1);
+	init_opt(options);
+	ft_detect_opt(argv, argc, options);
 	while (++i < argc)
 	{
 		path = argv[i];
