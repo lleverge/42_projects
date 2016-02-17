@@ -39,3 +39,20 @@ void	ft_display_l(t_elem *list, int blocks, t_pad *pad, t_opt *options)
       list = list->next;
     }
 }
+
+
+t_elem		*ft_index_list(t_elem *elem)
+{
+  t_elem	*tmp;
+  int		i;
+
+  tmp = elem;
+  i = 0;
+  while (tmp)
+    {
+      tmp->count = i;
+      i++;
+      tmp = tmp->next;
+    }
+  return (elem);
+}

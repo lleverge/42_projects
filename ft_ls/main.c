@@ -42,9 +42,13 @@ t_elem		*info_in_list(t_elem *start, char *fname, char *path)
 
 void		ft_display(t_elem *list, t_opt *options, t_pad *pad)
 {
+  list = ft_sort_ascii(list);
   if (options->t == 1)
-    ft_sort_time(list);
-    ft_display_l(list, count_blocks(list), pad, options);
+    list = ft_sort_time(list);
+  list = ft_index_list(list);
+  if (options->r == 1)
+    list = ft_sort_rev(list);
+  ft_display_l(list, count_blocks(list), pad, options);
 }
 
 void		ft_create_list(char *path, t_opt *options)
@@ -64,8 +68,8 @@ void		ft_create_list(char *path, t_opt *options)
 	list = NULL;
 	while (elem)
 	{
-		list = info_in_list(list, elem->d_name, ft_strjoin(path, elem->d_name));
-		elem = readdir(ret);
+	  list = info_in_list(list, elem->d_name, ft_strjoin(path, elem->d_name));
+	  elem = readdir(ret);
 	}
 	list = ft_sort_ascii(list);
 	ft_display(list, options, pad);

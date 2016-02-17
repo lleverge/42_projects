@@ -34,6 +34,21 @@ t_elem			*ft_sort_ascii(t_elem *elem)
 	return (elem);
 }
 
+t_elem                  *ft_sort_rev(t_elem *elem)
+{
+  if (elem == NULL)
+    return (NULL);
+  if (elem->next != NULL && elem->count < elem->next->count)
+    elem = ft_elem_swap(elem, elem->next);
+  elem->next = ft_sort_rev(elem->next);
+  if (elem->next != NULL && elem->count < elem->next->count)
+    {
+      elem = ft_elem_swap(elem, elem->next);
+      elem->next = ft_sort_rev(elem->next);
+    }
+  return (elem);
+}
+
 t_elem			*ft_sort_time(t_elem *elem)
 {
 	if (!elem)

@@ -63,6 +63,8 @@ typedef struct		s_elem
 
 typedef struct stat	t_stat;
 
+t_elem				*ft_index_list(t_elem *elem);
+t_elem				*ft_sort_rev(t_elem *elem);
 void				opt_error(char *s);
 void				ft_detect_opt(char *arg, t_opt *options);
 void				init_opt(t_opt *options);
