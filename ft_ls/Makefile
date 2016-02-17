@@ -12,7 +12,7 @@
 
 NAME = ft_ls
 
-SRC = ft_ls_l.c		ft_elem.c	ft_sort.c	ft_padding.c\
+SRC = ft_ls_l.c		main.c	ft_sort.c	ft_padding.c\
 	ft_ls_l2.c		ft_error.c	ft_opt.c
 OBJ = $(SRC:.c=.o)
 LIB = ./libft/libft.a

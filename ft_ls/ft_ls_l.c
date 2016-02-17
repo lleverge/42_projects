@@ -66,21 +66,24 @@ char		*ft_perm(t_stat *stat)
 	return (ft_strdup(ft_rights(perm, i, stat)));
 }
 
-void		print_infos(t_elem *list)
+void		print_infos(t_elem *list, t_opt *options)
 {
-	ft_putstr(list->perm);
-	ft_putstr("  ");
-	ft_putstr(list->links);
-	ft_putchar(' ');
-	ft_putstr(list->user);
-	ft_putstr("  ");
-	ft_putstr(list->group);
-	ft_putstr("  ");
-	ft_putstr(list->size);
-	ft_putchar(' ');
-	ft_putstr(ft_strsub(ctime(&list->create), 4, 12));
-	ft_putchar(' ');
-	ft_putstr(list->name);
+  if (options->l == 1)
+    {
+      ft_putstr(list->perm);
+      ft_putstr("  ");
+      ft_putstr(list->links);
+      ft_putchar(' ');
+      ft_putstr(list->user);
+      ft_putstr("  ");
+      ft_putstr(list->group);
+      ft_putstr("  ");
+      ft_putstr(list->size);
+      ft_putchar(' ');
+      ft_putstr(ft_strsub(ctime(&list->create), 4, 12));
+      ft_putchar(' ');
+    }
+  ft_putstr(list->name);
 }
 
 int			count_blocks(t_elem *list)

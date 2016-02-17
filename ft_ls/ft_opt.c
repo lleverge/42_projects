@@ -12,26 +12,28 @@
 
 #include "ft_ls.h"
 
-void	ft_detect_opt(char **argv, int argc, t_opt *options)
+void	ft_detect_opt(char *arg, t_opt *options)
 {
-  int		i;
-  int		j;
+  int	i;
 
   i = 0;
-  j = 0;
-  while (i < argc)
+  while (arg[++i] != '\0')
     {
-      j = 0;
-      if (argv[i][j] == '-')
+      if (arg[i] == 't')
+	options->t = 1;
+      else if (arg[i] == 'a')
+	options->a = 1;
+      else if (arg[i] == 'l')
+	options->l = 1;
+      else if (arg[i] == 'R')
+	options->rec = 1;
+      else if (arg[i] == 'r')
+	options->r = 1;
+      else
 	{
-	  while (argv[i][j])
-	    {
-	      if (argv[i][j] == 'l')
-		options->l = 1;
-	      j++;
-	    }
+	  opt_error(arg);
+	  exit(1);
 	}
-      i++;
     }
 }
 

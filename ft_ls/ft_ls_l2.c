@@ -12,19 +12,30 @@
 
 #include "ft_ls.h"
 
-void	ft_display_l(t_elem *list, int blocks, t_pad *pad)
+void	ft_display_l(t_elem *list, int blocks, t_pad *pad, t_opt *options)
 {
-	ft_putstr("total ");
-	ft_putnbr(blocks);
-	ft_putchar('\n');
-	ft_padding(&list, pad);
-	while (list)
+  if (options->l == 1)
+    {
+      ft_putstr("total ");
+      ft_putnbr(blocks);
+      ft_putchar('\n');
+      ft_padding(&list, pad);
+    }
+  while (list)
+    {
+      if (options->a == 1)
 	{
-		if (REAL_DIR(list->name))
-		{
-			print_infos(list);
-			ft_putchar('\n');
-		}
-		list = list->next;
+	  print_infos(list, options);
+	  ft_putchar('\n');
 	}
+      else
+	{
+	  if (REAL_DIR(list->name))
+	    {
+	      print_infos(list, options);
+	      ft_putchar('\n');
+	    }
+	}
+      list = list->next;
+    }
 }
