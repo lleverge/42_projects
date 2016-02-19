@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 18:07:03 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/10 13:26:14 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/19 17:39:01 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void		get_infos(char *fname, t_elem *tmp, t_stat stat)
 	tmp->blocks = stat.st_blocks;
 	tmp->perm = ft_perm(&stat);
 	tmp->links = ft_itoa(stat.st_nlink);
-	if (tmp->perm[0] == 'd')
-		tmp->is_dir = 1;
-	else
-		tmp->is_dir = 0;
+	tmp->is_dir = (tmp->perm[0] == 'd' && REAL_DIR(tmp->name));
 	tmp->size = ft_itoa(stat.st_size);
+	tmp->device = stat.st_rdev;
+	tmp->min = ft_strdup(ft_itoa(minor(tmp->device)));
+	tmp->maj = ft_strdup(ft_itoa(major(tmp->device)));
 	tmp->next = NULL;
 }
 
@@ -68,22 +68,22 @@ char		*ft_perm(t_stat *stat)
 
 void		print_infos(t_elem *list, t_opt *options)
 {
-  if (options->l == 1)
-    {
-      ft_putstr(list->perm);
-      ft_putstr("  ");
-      ft_putstr(list->links);
-      ft_putchar(' ');
-      ft_putstr(list->user);
-      ft_putstr("  ");
-      ft_putstr(list->group);
-      ft_putstr("  ");
-      ft_putstr(list->size);
-      ft_putchar(' ');
-      ft_putstr(ft_strsub(ctime(&list->create), 4, 12));
-      ft_putchar(' ');
-    }
-  ft_putstr(list->name);
+	if (options->l == 1)
+	{
+		ft_putstr(list->perm);
+		ft_putstr("  ");
+		ft_putstr(list->links);
+		ft_putchar(' ');
+		ft_putstr(list->user);
+		ft_putstr("  ");
+		ft_putstr(list->group);
+		ft_putstr("  ");
+		ft_print_majmin(list);
+		ft_putchar(' ');
+		ft_putstr(ft_strsub(ctime(&list->create), 4, 12));
+		ft_putchar(' ');
+	}
+	ft_putstr(list->name);
 }
 
 int			count_blocks(t_elem *list)

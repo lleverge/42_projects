@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:24:16 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/16 14:27:05 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/19 17:38:36 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,17 @@ t_elem		*info_in_list(t_elem *start, char *fname, char *path)
 	return (start);
 }
 
-void		ft_display(t_elem *list, t_opt *options, t_pad *pad)
+void		ft_display(t_elem *list, t_opt *options, t_pad *pad, char *path)
 {
-  list = ft_sort_ascii(list);
-  if (options->t == 1)
-    list = ft_sort_time(list);
-  list = ft_index_list(list);
-  if (options->r == 1)
-    list = ft_sort_rev(list);
-  ft_display_l(list, count_blocks(list), pad, options);
+	list = ft_sort_ascii(list);
+	if (options->t == 1)
+		list = ft_sort_time(list);
+	list = ft_index_list(list);
+	if (options->r == 1)
+		list = ft_sort_rev(list);
+	display_l(list, count_blocks(list), pad, options);
+	if (options->rec == 1)
+		ft_recursive(list, options, path, ft_count_dir(list));
 }
 
 void		ft_create_list(char *path, t_opt *options)
@@ -68,11 +70,11 @@ void		ft_create_list(char *path, t_opt *options)
 	list = NULL;
 	while (elem)
 	{
-	  list = info_in_list(list, elem->d_name, ft_strjoin(path, elem->d_name));
-	  elem = readdir(ret);
+		list = info_in_list(list, elem->d_name, ft_strjoin(path, elem->d_name));
+		elem = readdir(ret);
 	}
 	list = ft_sort_ascii(list);
-	ft_display(list, options, pad);
+	ft_display(list, options, pad, path);
 	closedir(ret);
 }
 
@@ -90,15 +92,15 @@ int			main(int argc, char **argv)
 	init_opt(options);
 	while (++i < argc)
 	{
-	  if (argv[i][0] == '-')
-	      ft_detect_opt(argv[i], options);
-	  else
-	    {
-	      path = argv[i];
-	      ft_create_list(ft_strjoin(path, "/"), options);
-	    }
+		if (argv[i][0] == '-')
+			ft_detect_opt(argv[i], options);
+		else
+		{
+			path = argv[i];
+			ft_create_list(ft_strjoin(path, "/"), options);
+		}
 	}
 	if (!path)
-	  ft_create_list("./", options);
+		ft_create_list("./", options);
 	return (0);
 }

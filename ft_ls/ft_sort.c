@@ -6,20 +6,20 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 09:38:40 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/16 13:57:30 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/19 16:02:23 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_elem			*ft_elem_swap(t_elem *elem1, t_elem *elem2)
+t_elem					*ft_elem_swap(t_elem *elem1, t_elem *elem2)
 {
 	elem1->next = elem2->next;
 	elem2->next = elem1;
 	return (elem2);
 }
 
-t_elem			*ft_sort_ascii(t_elem *elem)
+t_elem					*ft_sort_ascii(t_elem *elem)
 {
 	if (elem == NULL)
 		return (NULL);
@@ -34,22 +34,22 @@ t_elem			*ft_sort_ascii(t_elem *elem)
 	return (elem);
 }
 
-t_elem                  *ft_sort_rev(t_elem *elem)
+t_elem					*ft_sort_rev(t_elem *elem)
 {
-  if (elem == NULL)
-    return (NULL);
-  if (elem->next != NULL && elem->count < elem->next->count)
-    elem = ft_elem_swap(elem, elem->next);
-  elem->next = ft_sort_rev(elem->next);
-  if (elem->next != NULL && elem->count < elem->next->count)
-    {
-      elem = ft_elem_swap(elem, elem->next);
-      elem->next = ft_sort_rev(elem->next);
-    }
-  return (elem);
+	if (elem == NULL)
+		return (NULL);
+	if (elem->next != NULL && elem->count < elem->next->count)
+		elem = ft_elem_swap(elem, elem->next);
+	elem->next = ft_sort_rev(elem->next);
+	if (elem->next != NULL && elem->count < elem->next->count)
+	{
+		elem = ft_elem_swap(elem, elem->next);
+		elem->next = ft_sort_rev(elem->next);
+	}
+	return (elem);
 }
 
-t_elem			*ft_sort_time(t_elem *elem)
+t_elem					*ft_sort_time(t_elem *elem)
 {
 	if (!elem)
 		return (NULL);

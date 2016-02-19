@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:12:00 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/16 14:27:01 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/19 16:24:19 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 void	ft_detect_opt(char *arg, t_opt *options)
 {
-  int	i;
+	int	i;
 
-  i = 0;
-  while (arg[++i] != '\0')
-    {
-      if (arg[i] == 't')
-	options->t = 1;
-      else if (arg[i] == 'a')
-	options->a = 1;
-      else if (arg[i] == 'l')
-	options->l = 1;
-      else if (arg[i] == 'R')
-	options->rec = 1;
-      else if (arg[i] == 'r')
-	options->r = 1;
-      else
+	i = 0;
+	while (arg[++i] != '\0')
 	{
-	  opt_error(arg);
-	  exit(1);
+		if (arg[i] == 't')
+			options->t = 1;
+		else if (arg[i] == 'a')
+			options->a = 1;
+		else if (arg[i] == 'l')
+			options->l = 1;
+		else if (arg[i] == 'R')
+			options->rec = 1;
+		else if (arg[i] == 'r')
+			options->r = 1;
+		else
+		{
+			opt_error(arg);
+			exit(1);
+		}
 	}
-    }
 }
 
 void	init_opt(t_opt *options)

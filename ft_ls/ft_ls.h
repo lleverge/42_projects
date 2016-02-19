@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/16 14:14:41 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/19 17:21:51 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct		s_pad
 	size_t			uid;
 	size_t			gid;
 	size_t			size;
+	size_t			min;
+	size_t			maj;
 }					t_pad;
 
 typedef struct		s_elem
@@ -58,11 +60,18 @@ typedef struct		s_elem
 	int				is_dir;
 	int				count;
 	char			*size;
+	dev_t			device;
+	char			*min;
+	char			*maj;
 	struct s_elem	*next;
 }					t_elem;
 
 typedef struct stat	t_stat;
 
+char				*ft_add_slash(char *path);
+int					ft_count_dir(t_elem *elem);
+void				ft_recursive(t_elem *elem, t_opt *opt, char *path, int nb_dir);
+void				ft_print_majmin(t_elem *list);
 t_elem				*ft_index_list(t_elem *elem);
 t_elem				*ft_sort_rev(t_elem *elem);
 void				opt_error(char *s);
@@ -80,6 +89,6 @@ char				*ft_perm(t_stat *stat);
 void				ft_create_list(char *path, t_opt *options);
 void				get_infos(char *fname, t_elem *tmp, t_stat stat);
 t_elem				*ft_elem_swap(t_elem *elem1, t_elem *elem2);
-void				ft_display_l(t_elem *list, int blocks, t_pad *pad, t_opt *options);
-void				ft_display(t_elem *elem, t_opt *options, t_pad *pad);
+void				display_l(t_elem *list, int block, t_pad *pad, t_opt *opt);
+void				ft_display(t_elem *elem, t_opt *options, t_pad *pad, char *path);
 #endif
