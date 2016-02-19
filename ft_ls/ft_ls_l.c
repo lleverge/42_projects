@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 18:07:03 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/19 17:39:01 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/19 17:56:11 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int			count_blocks(t_elem *list)
 	int	count;
 
 	count = 0;
-	while (list != NULL)
+	while (list != NULL && list->perm[0] != 'l' && list->next != NULL)
 	{
 		count += list->blocks;
 		list = list->next;
