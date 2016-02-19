@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 18:07:03 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/19 17:56:11 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/19 18:03:19 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,28 @@ void		print_infos(t_elem *list, t_opt *options)
 	ft_putstr(list->name);
 }
 
-int			count_blocks(t_elem *list)
+int			count_blocks(t_elem *list, t_opt *options)
 {
 	int	count;
 
 	count = 0;
 	while (list != NULL && list->perm[0] != 'l' && list->next != NULL)
 	{
-		count += list->blocks;
-		list = list->next;
+		if (options->a == 1)
+		{
+			count += list->blocks;
+			list = list->next;
+		}
+		else
+		{
+			if (list->name[0] != '.')
+			{
+				count += list->blocks;
+				list = list->next;
+			}
+			else
+				list = list->next;
+		}
 	}
 	return (count);
 }

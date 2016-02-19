@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/19 17:21:51 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/02/19 18:01:21 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void				ft_detect_opt(char *arg, t_opt *options);
 void				init_opt(t_opt *options);
 void				no_file_dir(char *fname);
 void				ft_padding(t_elem **elem, t_pad *pad);
-int					count_blocks(t_elem *list);
+int					count_blocks(t_elem *list, t_opt *options);
 void				print_infos(t_elem *list, t_opt *options);
 t_elem				*ft_sort_time(t_elem *elem);
 t_elem				*ft_sort_ascii(t_elem *elem);
