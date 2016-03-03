@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:24:16 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/19 18:02:34 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/03 12:51:09 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void		ft_display(t_elem *list, t_opt *options, t_pad *pad, char *path)
 	display_l(list, count_blocks(list, options), pad, options);
 	if (options->rec == 1)
 		ft_recursive(list, options, path, ft_count_dir(list));
+	free_list(&list);
+	free_pad(&pad);
 }
 
 void		ft_create_list(char *path, t_opt *options)
@@ -102,5 +104,6 @@ int			main(int argc, char **argv)
 	}
 	if (!path)
 		ft_create_list("./", options);
+	free_opt(&options);
 	return (0);
 }

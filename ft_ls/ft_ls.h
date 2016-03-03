@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/19 18:01:21 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/03 11:50:36 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ typedef struct		s_elem
 
 typedef struct stat	t_stat;
 
+void				free_list(t_elem **head);
+void				free_pad(t_pad **head);
+void				free_opt(t_opt **head);
 char				*ft_add_slash(char *path);
 int					ft_count_dir(t_elem *elem);
 void				ft_recursive(t_elem *elem, t_opt *opt, char *path, int nb_dir);
