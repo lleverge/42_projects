@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/03/03 11:50:36 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 14:12:53 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_pad
 
 typedef struct		s_elem
 {
+	char			*path;
 	char			*name;
 	long long		modif_last;
 	time_t			create;
@@ -68,6 +69,8 @@ typedef struct		s_elem
 
 typedef struct stat	t_stat;
 
+char				*ft_get_pathname(t_elem *elem, char *path);
+void				ft_put_link(char *path);
 void				free_list(t_elem **head);
 void				free_pad(t_pad **head);
 void				free_opt(t_opt **head);
@@ -90,7 +93,7 @@ t_elem				*info_in_list(t_elem *start, char *fname, char *path);
 char				*ft_rights(char *perm, int i, t_stat *stat);
 char				*ft_perm(t_stat *stat);
 void				ft_create_list(char *path, t_opt *options);
-void				get_infos(char *fname, t_elem *tmp, t_stat stat);
+void				get_infos(char *fname, t_elem *tmp, t_stat stat, char *path);
 t_elem				*ft_elem_swap(t_elem *elem1, t_elem *elem2);
 void				display_l(t_elem *list, int block, t_pad *pad, t_opt *opt);
 void				ft_display(t_elem *elem, t_opt *options, t_pad *pad, char *path);

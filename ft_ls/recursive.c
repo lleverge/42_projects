@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:11:05 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/19 17:27:01 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 13:37:23 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void            ft_recursive(t_elem *elem, t_opt *opt, char *path, int nb_dir)
 		if (elem->is_dir == 1)
 		{
 			all_dir[i] = ft_strdup(elem->name);
-			ft_putstr(all_dir[i]);
-			ft_putchar('\n');
 			i++;
 		}
 		elem = elem->next;
@@ -63,7 +61,7 @@ void            ft_recursive(t_elem *elem, t_opt *opt, char *path, int nb_dir)
 	i = -1;
 	while (++i < nb_dir)
 	{
-		if (opt->a && all_dir[i][0] == '.')
+		if (opt->a == 1 && all_dir[i][0] == '.')
 			ft_put_css('\n', ft_strjoin(path, all_dir[i]), ":\n");
 		else if (all_dir[i][0] != '.')
 			ft_put_css('\n', ft_strjoin(path, all_dir[i]), ":\n");

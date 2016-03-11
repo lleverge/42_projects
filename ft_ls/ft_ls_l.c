@@ -6,13 +6,13 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 18:07:03 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/19 18:03:19 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 14:19:32 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		get_infos(char *fname, t_elem *tmp, t_stat stat)
+void		get_infos(char *fname, t_elem *tmp, t_stat stat, char *path)
 {
 	tmp->name = ft_strdup(fname);
 	tmp->modif_last = (long long)stat.st_mtime;
@@ -25,6 +25,7 @@ void		get_infos(char *fname, t_elem *tmp, t_stat stat)
 	tmp->device = stat.st_rdev;
 	tmp->min = ft_strdup(ft_itoa(minor(tmp->device)));
 	tmp->maj = ft_strdup(ft_itoa(major(tmp->device)));
+	tmp->path = ft_get_pathname(tmp, path);
 	tmp->next = NULL;
 }
 
@@ -84,6 +85,8 @@ void		print_infos(t_elem *list, t_opt *options)
 		ft_putchar(' ');
 	}
 	ft_putstr(list->name);
+	if (list->perm[0] == 'l')
+		ft_put_link(list->path);
 }
 
 int			count_blocks(t_elem *list, t_opt *options)
@@ -91,7 +94,7 @@ int			count_blocks(t_elem *list, t_opt *options)
 	int	count;
 
 	count = 0;
-	while (list != NULL && list->perm[0] != 'l' && list->next != NULL)
+	while (list != NULL && list->perm[0] != 'l')// && list->next != NULL)
 	{
 		if (options->a == 1)
 		{

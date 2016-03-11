@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:12:50 by lleverge          #+#    #+#             */
-/*   Updated: 2016/02/19 17:48:50 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 14:18:33 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ void		ft_print_majmin(t_elem *list)
 		ft_putstr(list->size);
 }
 
+void	ft_put_link(char *path)
+{
+	char	buffer[1024];
+	int		ret;
+
+	ret = readlink(path, buffer, 1023);
+	if (ret == -1)
+		return ;
+	buffer[ret] = '\0';
+	ft_putstr(" -> ");
+	ft_putstr(buffer);
+}
+
 t_elem		*ft_index_list(t_elem *elem)
 {
 	t_elem	*tmp;
@@ -67,4 +80,19 @@ t_elem		*ft_index_list(t_elem *elem)
 		tmp = tmp->next;
 	}
 	return (elem);
+}
+
+char		*ft_get_pathname(t_elem *elem, char *path)
+{
+	char	*tmp;
+
+	if (path[ft_strlen(path) - 1] != '/')
+	{
+		tmp = ft_strjoin(path, "/");
+		elem->path = ft_strjoin(tmp, elem->name);
+		ft_strdel(&tmp);
+	}
+	else
+		elem->path = ft_strjoin(path, elem->name);
+	return (path);
 }

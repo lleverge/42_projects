@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:24:16 by lleverge          #+#    #+#             */
-/*   Updated: 2016/03/03 12:51:09 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 14:06:55 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_elem		*info_in_list(t_elem *start, char *fname, char *path)
 	voyager = start;
 	if (lstat(path, &stat) <= 0)
 	{
-		get_infos(fname, tmp, stat);
+		get_infos(fname, tmp, stat, path);
 		if (getpwuid(stat.st_uid) != NULL)
 			tmp->user = ft_strdup(getpwuid(stat.st_uid)->pw_name);
 		else
@@ -99,7 +99,7 @@ int			main(int argc, char **argv)
 		else
 		{
 			path = argv[i];
-			ft_create_list(ft_strjoin(path, "/"), options);
+			ft_create_list(ft_add_slash(path), options);
 		}
 	}
 	if (!path)
