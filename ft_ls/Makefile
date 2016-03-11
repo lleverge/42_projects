@@ -6,7 +6,7 @@
 #    By: lleverge <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/21 17:32:58 by lleverge          #+#    #+#              #
-#    Updated: 2016/03/03 11:49:38 by lleverge         ###   ########.fr        #
+#    Updated: 2016/03/11 17:03:11 by lleverge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = ft_ls
 
 SRC = ft_ls_l.c		main.c	ft_sort.c	ft_padding.c\
 	ft_ls_l2.c		ft_error.c	ft_opt.c	recursive.c\
-	free.c
+	free.c		ft_ls_l3.c
 OBJ = $(SRC:.c=.o)
 LIB = ./libft/libft.a
 FLAGS = -Wall -Wextra -Werror

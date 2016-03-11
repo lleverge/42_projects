@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 18:07:03 by lleverge          #+#    #+#             */
-/*   Updated: 2016/03/11 14:19:32 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 17:47:48 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void		get_infos(char *fname, t_elem *tmp, t_stat stat, char *path)
 {
 	tmp->name = ft_strdup(fname);
-	tmp->modif_last = (long long)stat.st_mtime;
-	tmp->create = stat.st_mtime;
+	tmp->modif_last = (long long)ft_get_time(&stat.st_mtime);
+	tmp->create = ft_get_time(&stat.st_mtime);
 	tmp->blocks = stat.st_blocks;
 	tmp->perm = ft_perm(&stat);
 	tmp->links = ft_itoa(stat.st_nlink);
@@ -81,7 +81,7 @@ void		print_infos(t_elem *list, t_opt *options)
 		ft_putstr("  ");
 		ft_print_majmin(list);
 		ft_putchar(' ');
-		ft_putstr(ft_strsub(ctime(&list->create), 4, 12));
+		ft_putstr(list->create);
 		ft_putchar(' ');
 	}
 	ft_putstr(list->name);

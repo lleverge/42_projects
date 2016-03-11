@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:24:16 by lleverge          #+#    #+#             */
-/*   Updated: 2016/03/11 15:38:15 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:49:18 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void		ft_create_list(char *path, t_opt *options)
 
 	pad = NULL;
 	if ((ret = opendir(path)) == NULL)
+	{
 		no_file_dir(path);
+		return ;
+	}
 	elem = readdir(ret);
 	if (!(list = (t_elem *)malloc(sizeof(t_elem))) ||
 		(!(pad = (t_pad *)malloc(sizeof(t_pad)))))

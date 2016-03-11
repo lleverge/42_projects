@@ -6,20 +6,20 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 11:40:39 by lleverge          #+#    #+#             */
-/*   Updated: 2016/03/03 12:48:10 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:42:58 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void        free_list(t_elem **head)
+void		free_list(t_elem **head)
 {
 	t_elem	*current;
 	t_elem	*next;
 
-    current = *head;
-    while (current != NULL)
-    {
+	current = *head;
+	while (current != NULL)
+	{
 		next = current->next;
 		ft_strdel(&(current->name));
 		ft_strdel(&(current->perm));

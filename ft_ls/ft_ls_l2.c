@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:12:50 by lleverge          #+#    #+#             */
-/*   Updated: 2016/03/11 14:25:31 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 17:02:16 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void		ft_print_majmin(t_elem *list)
 		ft_putstr(list->size);
 }
 
-void	ft_put_link(char *path)
+void		ft_put_link(char *path)
 {
 	char	buffer[1024];
 	int		ret;

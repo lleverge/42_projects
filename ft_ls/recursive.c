@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 17:11:05 by lleverge          #+#    #+#             */
-/*   Updated: 2016/03/11 13:37:23 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:44:22 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int				ft_count_dir(t_elem *elem)
 {
-	int     i;
+	int	i;
 
 	i = 0;
 	while (elem)
@@ -40,10 +40,10 @@ char			*ft_add_slash(char *path)
 	return (path);
 }
 
-void            ft_recursive(t_elem *elem, t_opt *opt, char *path, int nb_dir)
+void			ft_recursive(t_elem *elem, t_opt *opt, char *path, int nb_dir)
 {
-	char    **all_dir;
-	int     i;
+	char	**all_dir;
+	int		i;
 
 	i = 0;
 	if (!(all_dir = (char **)malloc(sizeof(char *) * nb_dir + 1)))
