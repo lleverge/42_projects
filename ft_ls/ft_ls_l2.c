@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:12:50 by lleverge          #+#    #+#             */
-/*   Updated: 2016/03/11 14:18:33 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 14:25:31 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		display_l(t_elem *list, int block, t_pad *pad, t_opt *opt)
 		}
 		else
 		{
-			if (REAL_DIR(list->name))
+			if (list->name[0] != '.')
 			{
 				print_infos(list, opt);
 				ft_putchar('\n');

@@ -6,7 +6,7 @@
 /*   By: lleverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 13:25:02 by lleverge          #+#    #+#             */
-/*   Updated: 2016/03/11 14:12:53 by lleverge         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:25:31 by lleverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct		s_elem
 
 typedef struct stat	t_stat;
 
+char				*remove_slash(char *name);
 char				*ft_get_pathname(t_elem *elem, char *path);
 void				ft_put_link(char *path);
 void				free_list(t_elem **head);
